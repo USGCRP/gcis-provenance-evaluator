@@ -41,10 +41,10 @@ A 5 point system:
 
 ## Robust Resources
 
-[![Robust Contributor][./robust-contributor.jpg]]
-[![Robust Component][./robust-component.jpg]]
-[![Robust Publication][./robust-publication.jpg]]
-[![Robust Reference][./robust-reference.jpg]]
+[Robust Contributor](./robust-contributor.jpg)  
+[Robust Component](./robust-component.jpg)  
+[Robust Publication](./robust-publication.jpg)  
+[Robust Reference](./robust-reference.jpg)  
 
 ## Program Design
 
