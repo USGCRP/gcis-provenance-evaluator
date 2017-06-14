@@ -1,0 +1,43 @@
+# For each Resource, which items should be considered components?
+# required: the system should count as a very poor if this doesn't exist.
+
+report :
+  optional : [ figure, table, finding, chapter, activity ]
+figure :
+  required : [ image ]
+  optional : [ activity ]
+finding :
+  optional : [ activity ]
+table :
+  required : [ array ]
+  optional : [ activity ]
+chapter :
+  optional : [ figure, finding, table, activity ]
+article :
+  required : [ journal ]
+  optional : [ activity ]
+dataset: 
+  optional : [ activity ]
+webpage: 
+  optional : [ activity ]
+image: 
+  optional : [ activity ]
+scenario: 
+  optional : [ activity ]
+instrument: 
+  optional : [ activity ]
+journal: 
+  optional : [ activity ]
+book: 
+  optional : [ activity ]
+platform: 
+  optional : [ activity ]
+model: 
+  optional : [ activity ]
+generic:   
+  optional : [ activity ]
+contributor:
+  required: [  ]
+  optional : [ person, organization ]
+reference : 
+  required: [ publication ]

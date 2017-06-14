@@ -1,0 +1,380 @@
+# For a given resource, what is required to be acceptable? 
+# Failing that, poor? very poor?
+# If acceptable, good? very good?
+# If multiple exist, any is enough.
+
+report : 
+  very_poor :
+    - required : 4 
+      fields : [ title, report_type_identifier, identifier, _public ]
+  poor :
+    - required : 1
+      fields : [ publication_year ]
+  acceptable :
+    - required : 1
+      fields : [ doi, file_identifier, url ]
+  good :
+    - required : 2
+      fields : [ doi, file_identifier, url ]
+  very_good :
+    - required : 3 
+      fields : [ summary, frequency, topic, in_library, contact_note, contact_email, publication_year ]
+activity :
+  very_poor :
+    - required : 1
+      fields : [ identifier ] 
+  poor :
+    - required : -1
+      fields : []
+  acceptable :
+    - required : 1
+      fields : [ methodology ]
+  good :
+    - required : 4
+      fields : [ computing_environment, software, data_usage, output_artifacts ]
+  very_good :
+    - required : 2 
+      fields : [ start_time, end_time, duration, visualization_software, notes ]
+array :
+  very_poor :
+    - required : 2
+      fields : [ identifier, rows_in_header ]
+  poor :
+    - required : -1
+      fields : []
+  acceptable :
+    - required : 1
+      fields : [ rows ]
+  good :
+    - required : -1
+      fields : []
+  very_good :
+    - required : -1
+      fields : []
+article :
+  very_poor :
+    - required : 2
+      fields : [ identifier, journal_identifier ]
+  poor :
+    - required : 2
+      fields : [ title, year ]
+  acceptable :
+    - required : 2
+      fields : [ url, title ]
+    - required : 2
+      fields : [ doi, title ]
+    - required : 2
+      fields : [ file_identifier, title ]
+  good :
+    - required : 1
+      fields : [ journal_vol ]
+  very_good :
+    - required : 1
+      fields : [ journal_pages, notes ]
+book :
+  very_poor :
+    - required : 2
+      fields : [ identifier, title ]
+  poor :
+    - required : 1
+      fields : [ publisher, year ]
+  acceptable :
+    - required : 1
+      fields : [ isbn, url, file_identifier ]
+  good :
+    - required : 2
+      fields : [ isbn, url, file_identifier ]
+  very_good :
+    - required : 2
+      fields : [ publisher, year ]
+    - required : 3
+      fields : [ publisher, year, number_of_pages, in_library, topic ]
+chapter :
+  very_poor :
+    - required : 2
+      fields : [ identifier, report_identifier ]
+  poor :
+    - required : 1
+      fields : [ title ]
+  acceptable :
+    - required : 1
+      fields : [ url, doi ]
+  good :
+    - required : 2
+      fields : [ url, doi, title ]
+  very_good :
+    - required : 1
+      fields : [ number ]
+    - required : 1
+      fields : [ number, sort_key ]
+dataset :
+  very_poor :
+    - required : 1
+      fields : [ identifier ]
+  poor :
+    - required : 2
+      fields : [ name, publication_year ]
+    - required : 2
+      fields : [ name, native_id ]
+  acceptable :
+    - required : 1
+      fields : [ url, doi ]
+  good :
+    - required : 2
+      fields : [ url, doi, name ]
+    - required : 5 # shrug?
+      fields : [ access_dt, data_qualifier, cite_metadata, scope, version, native_id, release_dt, publication_year, description_attribution ]
+  very_good :
+    - required : 5 # shrug?
+      fields : [ type, description, scale, spatial_ref_sys, spatial_extent, temporal_extent, vertical_extent, processing_level, spatial_res, attributes, variables, start_time, end_time, lat_min, lat_max, lon_min, lon_max, temporal_resolution ]
+figure :
+  very_poor : 
+    - required : 2
+      fields : [ identifier, report_identifier ]
+  poor :
+    - required : -1
+      fields : []
+  acceptable :
+    - required : 2
+      fields : [ title, ordinal ]
+  good :
+    - required : 2
+      fields : [ caption, source_citation, url, usage_limits ]
+  very_good :
+    - required : 4 # shrug?
+      fields : [ attributes, time_start, time_end, lat_max, lat_min, lon_max, lon_min, submission_dt, create_dt ]
+finding :
+  very_poor :
+    - required : 2
+      fields : [ identifier, report_identifier ]
+  poor :
+    - required : -1
+      fields : []
+  acceptable :
+    - required : 2
+      fields : [ statement, ordinal ]
+  good :
+    - required : 3
+      fields : [ process, evidence, uncertainties, confidence, url ]
+  very_good :
+    - required : -1
+      fields : []
+generic :
+  very_poor :
+    - required : 1
+      fields : [ identifier ]
+  poor :
+    - required : 1
+      fields : [ attrs ]
+  acceptable :
+    - required : 3
+      fields : [ attrs\:Title, attrs\:Author, attrs\:reftype ]
+    - required : 1
+      fields : [ attrs\:URL ]
+  good :
+    - required : 4
+      fields : [ attrs\:Title, attrs\:Author, attrs\:reftype, attrs\:URL, attrs\:Publisher, attrs\:Year ]
+  very_good :
+    - required : -1
+      fields : []
+image :
+  very_poor :
+    - required : 1
+      fields : [ identifier ]
+  poor :
+    - required : 2
+      fields : [ figure_identifier, file_identifier ]
+  acceptable :
+    - required : 3
+      fields : [ figure_identifier, file_identifier, url ]
+    - required : 3
+      fields : [ figure_identifier, file_identifier, title ]
+  good :
+    - required : 2
+      fields : [ title, url, usage_limits ]
+  very_good :
+    - required : 5 # shrug ?
+      fields : [ attributes, time_start, time_end, lat_max, lat_min, lon_max, lon_min, submission_dt, create_dt, position, description ]
+instrument :
+  very_poor :
+    - required : 2
+      fields : [ identifier, name ]
+  poor :
+    - required : 1
+      fields : [ description ]
+  acceptable :
+    - required : -1
+      fields : []
+  good :
+    - required : 1
+      fields : [ description_attribution ]
+  very_good :
+    - required : -1
+      fields : []
+journal :
+  very_poor :
+    - required : 1
+      fields : [ identifier ]
+  poor :
+    - required : 2
+      fields : [ title, publisher ]
+  acceptable :
+    - required : 1
+      fields : [ url, print_issn, online_issn ]
+  good :
+    - required : 3
+      fields : [ title, publisher, url, print_issn, online_issn ]
+  very_good :
+    - required : 1
+      fields : [ notes, country ]
+model :
+  very_poor :
+    - required : -1
+      fields : []
+  poor :
+    - required : -1
+      fields : []
+  acceptable :
+    - required : 2
+      fields : [ identifier, reference_url ]
+  good :
+    - required : 1
+      fields : [ website ]
+    - required : 2
+      fields : [ name, version ]
+  very_good :
+    - required : 3
+      fields : [ description, description_attribution, name, website, version ]
+model_run :
+  very_poor :
+    - required : 7
+      fields : [ identifier, model_identifier, scenario_identifier, spatial_resolution, range_start, range_end, sequence ]
+  poor :
+    - required : -1
+      fields : []
+  acceptable :
+    - required : 1
+      fields : [ doi ]
+  good :
+    - required : -1
+      fields : []
+  very_good :
+    - required : 1
+      fields : [ sequence_description, time_resolution ]
+organization :
+  very_poor :
+    - required : 1
+      fields : [ identifier ]
+  poor :
+    - required : 2
+      fields : [ name, organization_type_identifier ]
+    - required : 2
+      fields : [ name, country_code ]
+  acceptable :
+    - required : 1
+      fields : [ url ]
+    - required : 3
+      fields : [ name, organization_type_identifier, country_code ]
+  good :
+    - required : 3
+      fields : [ name, organization_type_identifier, url ]
+  very_good :
+    - required : 1
+      fields : [ country_code, international ]
+person :
+  very_poor :
+    - required : 3
+      fields : [ id, first_name, last_name ]
+  poor :
+    - required : -1
+      fields : []
+  acceptable :
+    - required : -1
+      fields : []
+  good :
+    - required : 1
+      fields : [ url, orcid ]
+  very_good :
+    - required : -1
+      fields : []
+platform :
+  very_poor :
+    - required : 2
+      fields : [ identifier, name ]
+  poor :
+    - required : -1
+      fields : []
+  acceptable :
+    - required : 1
+      fields : [ url ]
+  good :
+    - required : 1
+      fields : [ description_attribution ]
+  very_good :
+    - required : 2
+      fields : [ description, platform_type_identifier, start_date, end_date ]
+project :
+  very_poor :
+    - required : 1
+      fields : [ identifier ]
+  poor :
+    - required : 1
+      fields : [ name ]
+  acceptable :
+    - required : 1
+      fields : [ website ]
+  good :
+    - required : 1
+      fields : [ name, description_attribution ]
+  very_good :
+    - required : 2
+      fields : [ description, description_attribution ]
+
+scenario :
+  very_poor :
+    - required : 1
+      fields : [ identifier ]
+  poor :
+    - required : 3
+      fields : [ name, description, description_attribution ]
+  acceptable :
+    - required : -1
+      fields : []
+  good :
+    - required : -1
+      fields : []
+  very_good :
+    - required : -1
+      fields : []
+table :
+  very_poor :
+    - required : 2
+      fields : [ identifier, report_identifier ]
+  poor :
+    - required : -1
+      fields : []
+  acceptable :
+    - required : 2
+      fields : [ title, ordinal ]
+  good :
+    - required : 1
+      fields : [ url ]
+  very_good :
+    - required : 1
+      fields : [ caption ]
+webpage :
+  very_poor :
+    - required : -1
+      fields : []
+  poor :
+    - required : -1
+      fields : []
+  acceptable :
+    - required : 2
+      fields : [ identifier, url ]
+  good :
+    - required : 1
+      fields : [ access_date ]
+  very_good :
+    - required : 1
+      fields : [ title ]

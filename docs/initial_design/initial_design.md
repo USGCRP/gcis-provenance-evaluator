@@ -61,4 +61,7 @@ Step 2 - tree-generate [1](./Step 2 - tree-generate-1.jpg) [2](./Step 2 - tree-g
 [Step 3 - display-data](./Step 3 - display-data.jpg)  
 [Step 3 mockup](display-data-mockup.jpg)  
 
+### Misc. Notes
+
+  - evaluation is assumed to check for 'acceptable' level first and scale down or up from there.
 

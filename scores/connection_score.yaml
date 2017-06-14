@@ -1,0 +1,38 @@
+# For a given resource, what is required to be acceptable? 
+# Failing that, poor? very poor?
+# If acceptable, good? very good?
+# If multiple exist, any is enough.
+contributor :
+  very_poor :
+    - required : 2
+      fields : [ id, role_type_identifer ]
+  poor :
+    - required : 1
+      fields : [ person_id, organization_identifier ]
+  acceptable :
+    - required : 2
+      fields : [ person_id, reference_identifier ]
+    - required : 2
+      fields : [ organization_identifier, reference_identifier ]
+  good :
+    - required : 3
+      fields : [ person_id, organization_identifier, reference_identifier ]
+  very_good :
+    - required : -1
+      fields : []
+reference :
+  very_poor :
+    - required : 1
+      fields : [ identifier ]
+  poor :
+    - required : 1
+      fields : [ attrs ]
+  acceptable :
+    - required : 1
+      fields : [ child_publication_id ]
+  good :
+    - required : -1
+      fields : []
+  very_good :
+    - required : -1
+      fields : []
