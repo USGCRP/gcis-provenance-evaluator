@@ -58,8 +58,7 @@ Score the nca3 report
 use Getopt::Long qw/GetOptions/;
 use Pod::Usage qw/pod2usage/;
 
-use Gcis::Client;
-use Gcis::Exim;
+use Gcis::Exim qw();
 use YAML::XS;
 use Data::Dumper;
 use FindBin qw( $RealBin );
@@ -115,7 +114,7 @@ sub main {
 
     my ( $resource_rubric, $component_map ) = load_rubric();
 
-    my $resource = $g->get("$resource_uri") or die " no resource";
+    my $g = Exim->new($url, 'read');
 
     my $resource = $g->get("$resource_uri") or die " no resource";
     if (ref $resource eq 'ARRAY') {
@@ -124,8 +123,18 @@ sub main {
             message => "$0: Resource needs a root resource (/report/nca3, /report/nca3/chapter/water-resources) not a sub list (/report/nca3/chapter)."
         );
     }
+    my $type = $g->extract_type_from_uri($resource_uri);
 
-    my $score_tree = { $resource_uri => score_resource( $g, $resource ) };
+
+    my $score_tree = {
+        $resource_uri => score_resource(
+                            gcis           => $g,
+                            resource       => $resource_uri,
+                            type           => $type,
+                            rubric         => $resource_rubric,
+                            components_map => $components_map
+                         )
+    };
 
     output_to_file( $score_tree );
 
@@ -136,45 +145,74 @@ sub main {
 }
 
 sub score_resource {
-    my $g = shift;
-    my $resource = shift;
+    my %args = (@_);
+    my $g               = $args{gcis};
+    my $resource_uri    = $args{resource};
+    my $rubric          = $args{rubric};
+    my $type            = $args{type};
+    my $components_map  = $args{components_map};
+
+    my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
+    my $score = calculate_internal_score( $rubric->{$type}, $resource);
+
     return {
-           score => 4,
-           connections => {
-               references =>[
-                   foo => {
-                       score => 4,
-                       child_publication => {
-                           score => 2,
-                       },
-                   },
-                   bar => {
-                       score => 3,
-                       child_publication => {
-                           score => 2,
-                       },
-                   },
-               ],
-               contributors => [
-                   5 => {
-                       score => 4,
-                       component => {
-                           score => 2,
-                       },
-                   },
-               ],
-           },
-           components => {
-               figures => [
-                   zap => {
-                       score => 4,
-                       component => {
-                           score => 2,
-                       },
-                   },
-               ],
-           },
-   }
+        score       => $score,
+        connections => {
+            contributors => "TODO contributors",
+            references   => "TODO references",
+        },
+        components => "TODO components",
+    };
+}
+
+sub score_contributor {
+}
+
+sub score_reference {
+}
+
+sub calculate_internal_score {
+    my $rubric = shift;
+    my $resource = shift;
+
+    if ( score_is('acceptable', $rubric, $resource) ) {
+        if ( score_is('good', $rubric, $resource) ) {
+            return 5 if score_is('very_good', $rubric, $resource);
+                                               # Very Good
+            return 4;                          # Good
+        }                                      #   are only checked after a determination of
+        return 3;                              # Acceptable
+    }
+    elsif ( score_is('poor', $rubric, $resource) ) {
+        return 2;                              # Poor
+    }
+    return 1;                                  # Very Poor
+}
+
+sub score_is {
+    my $quality = shift;
+    my $rubric = shift;
+    my $resource = shift;
+
+say "Testing for $quality";
+    # there can be multiple ways to get to the score
+    for my $qualifying_grades ( @{ $rubric->{$quality} } ) {
+        my @keys_to_look_for = @{ $qualifying_grades->{fields} };
+        my $required_num_keys = $qualifying_grades->{required};
+        my $count = 0;
+        for my $key ( @keys_to_look_for ) {
+            if ( exists $resource->{$key} && $resource->{$key} &&  $resource->{$key} ne '') {
+say "\tKey $key - Exists";
+                $count++;
+            }
+            else {
+say "\tKey $key - NO Exists";
+}
+            return 1 if $count == $required_num_keys;
+        }
+    }
+
+    return 0;
 }
 
 sub output_to_file {
