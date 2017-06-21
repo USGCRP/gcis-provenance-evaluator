@@ -32,6 +32,18 @@ GCIS resource, e.g. /report/nca3
 
 The file to save the output yaml
 
+=item B<--connection_score>
+
+File containing the Connection item scores. Default scores/connection_score.yaml
+
+=item B<--internal_score>
+
+File containing the Internal item scores. Default scores/internal_score.yaml
+
+=item B<--components>
+
+File containing the component relationships. Default config/components.yaml
+
 =back
 
 =head1 EXAMPLES
@@ -50,6 +62,8 @@ use Gcis::Client;
 use Gcis::Exim;
 use YAML::XS;
 use Data::Dumper;
+use FindBin qw( $RealBin );
+
 
 use strict;
 use v5.14;
@@ -57,17 +71,24 @@ use v5.14;
 # local $YAML::Indent = 2;
 
 my $url = "https://data.globalchange.gov";
+my $connection_score = "scores/connection_score.yaml";
+my $internal_score = "scores/internal_score.yaml";
+my $components_map = "config/components.yaml";
 GetOptions(
-  'url=s'       => \$url,
-  'resource=s'  => \(my $resource_uri),
-  'tree_file=s' => \(my $tree_file),
-  'verbose!'    => \(my $verbose),
-  'help|?'      => sub { pod2usage(verbose => 2) },
+  'url=s'               => \$url,
+  'resource=s'          => \(my $resource_uri),
+  'tree_file=s'         => \(my $tree_file),
+  'connection_score=s'  => \$connection_score,
+  'internal_score=s'    => \$internal_score,
+  'components=s'        => \$components_map,
+  'verbose!'            => \(my $verbose),
+  'help|?'              => sub { pod2usage(verbose => 2) },
 ) or die pod2usage(verbose => 1);
 
 pod2usage(verbose => 1, message => "$0: Resource option must be specified") unless $resource_uri;
 pod2usage(verbose => 1, message => "$0: Tree_file option must be specified") unless $tree_file;
 
+# Long running script - confirm our output file will work up front.
 {
     if ( open(TEST, ">", $tree_file) ) {
         close TEST;
@@ -82,17 +103,21 @@ pod2usage(verbose => 1, message => "$0: Tree_file option must be specified") unl
 sub main {
 
     say " Evaluating Provenance";
-    say "     url         : $url";
-    say "     resource    : $resource_uri";
-    say "     output file : $tree_file";
+    say "     url                    : $url";
+    say "     resource               : $resource_uri";
+    say "     output file            : $tree_file";
+    say "     internal scores file   : $internal_score";
+    say "     connection scores file : $connection_score";
+    say "     components file        : $components_map";
     say "";
 
     my $score_tree;
 
-    my $g = Gcis::Client->new(url => $url);
+    my ( $resource_rubric, $component_map ) = load_rubric();
 
     my $resource = $g->get("$resource_uri") or die " no resource";
 
+    my $resource = $g->get("$resource_uri") or die " no resource";
     if (ref $resource eq 'ARRAY') {
         pod2usage(
             verbose => 1,
@@ -161,6 +186,16 @@ sub output_to_file {
     print OUTPUT $eval_yaml;
     close OUTPUT;
     return;
+}
+
+sub load_rubric {
+    my $internal_rubric = YAML::XS::LoadFile("$RealBin/$internal_score") or die "Could not load Internal Score file: $RealBin/$internal_score";
+    my $connection_rubric = YAML::XS::LoadFile("$RealBin/$connection_score") or die "Could not load Connection Score file: $RealBin/$connection_score";
+    my $component_map = YAML::XS::LoadFile("$RealBin/$components_map") or die "Could not load Components file $RealBin/$components_map";
+
+    my %rubric = ( %$internal_rubric, %$connection_rubric );
+
+    return ( \%rubric, $component_map );
 }
 
 1;
