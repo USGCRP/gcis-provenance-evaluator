@@ -1,5 +1,5 @@
 # For each Resource, which items should be considered components?
-# required: the system should count as a very poor if this doesn't exist.
+# required: the scoring script should count as a very poor if this doesn't exist.
 --- 
 article: 
   optional: 
@@ -44,6 +44,7 @@ journal:
   optional: 
     - activity
 model: 
+<<<<<<< HEAD
   optional: 
     - activity
 platform: 
