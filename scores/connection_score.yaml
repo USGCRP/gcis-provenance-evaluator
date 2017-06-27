@@ -12,21 +12,21 @@ contributor:
       required: 2
     - 
       fields: 
-        - organization_identifier
+        - organization_uri
         - reference_identifier
       required: 2
   good: 
     - 
       fields: 
         - person_id
-        - organization_identifier
+        - organization_uri
         - reference_identifier
       required: 3
   poor: 
     - 
       fields: 
         - person_id
-        - organization_identifier
+        - organization_uri
       required: 1
   very_good: 
     - 
