@@ -101,6 +101,7 @@ my $DEBUG = 1;
 my $MAX_DEPTH = 1;
 my $RUBRIC;
 my $COMPONENTS;
+my $g; # connection to the GCIS; set once.
 my $URL = "https://data.globalchange.gov";
 my $connection_score = "scores/connection_score.yaml";
 my $internal_score = "scores/internal_score.yaml";
@@ -135,6 +136,7 @@ pod2usage(verbose => 1, message => "$0: Tree_file option must be specified") unl
         pod2usage(verbose => 1, message => "$0: Tree_file $tree_file can't be opened for writing");
     }
 }
+$g = Gcis::Client->new(url => $URL);
 
 &main;
 
@@ -152,17 +154,15 @@ Evaluating Provenance";
 END
     say $greeting if $verbose;
 
-    my $g = Gcis::Client->new(url => $URL);
-    confirm_good_resource($g, $resource_uri);
+    confirm_good_resource($resource_uri);
     my $type =  get_resource_type($resource_uri);
     load_rubric_and_components();
 
     my $score_tree = {
         $resource_uri => score_publication(
-                            gcis           => $g,
-                            resource       => $resource_uri,
-                            type           => $type,
-                            depth          => 0,
+                            resource => $resource_uri,
+                            type     => $type,
+                            depth    => 0,
                          )
     };
 
@@ -184,20 +184,18 @@ END
 
 sub score_publication {
     my %args = (@_);
-    my $g               = $args{gcis};
-    my $resource_uri    = $args{resource};
-    my $type            = $args{type};
-    my $depth           = $args{depth};
+    my $resource_uri = $args{resource};
+    my $type         = $args{type};
+    my $depth        = $args{depth};
 
     my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
     my $score = calculate_internal_score( $type, $resource);
 
     #my $contributors = {};
     my $contributors = score_contributors(
-                            gcis           => $g,
-                            contributors   => $resource->{contributors},
-                            resource       => $resource_uri,
-                            depth          => $depth,
+                            contributors => $resource->{contributors},
+                            resource     => $resource_uri,
+                            depth        => $depth,
                          );
 
 
@@ -205,9 +203,8 @@ sub score_publication {
     my $references = {};
     if ( grep { $type eq $_ } qw/report chapter figure finding table webpage book dataset journal/ ) {
         $references = score_references(
-            gcis           => $g,
-            resource       => $resource_uri,
-            depth          => $depth,
+            resource => $resource_uri,
+            depth    => $depth,
         );
     }
 
@@ -217,7 +214,7 @@ sub score_publication {
             contributors => $contributors,
             references   => $references,
         },
-        components => "TODO components",
+        components  => "TODO components",
     };
 }
 
@@ -225,20 +222,17 @@ sub score_publication {
 
 sub score_contributors {
     my %args = (@_);
-    my $g               = $args{gcis};
-    my $resource_uri    = $args{resource};
-    my $contributors    = $args{contributors};
-    my $depth           = $args{depth};
+    my $resource_uri = $args{resource};
+    my $contributors = $args{contributors};
+    my $depth        = $args{depth};
 
     return {} unless $contributors; # Empty contributor is fine.
 
     my $contributors_scored = {};
     for my $contrib ( @$contributors ) {
         my $contrib_score = score_contributor(
-            gcis           => $g,
-            contributor    => $contrib,
-            depth          => $depth,
-
+            contributor => $contrib,
+            depth       => $depth,
         );
         $contributors_scored->{$contrib->{uri}} = $contrib_score;
     }
@@ -247,35 +241,31 @@ sub score_contributors {
 
 sub score_contributor {
     my %args = (@_);
-    my $g               = $args{gcis};
-    my $depth           = $args{depth};
-    my $contributor     = $args{contributor};
+    my $depth       = $args{depth};
+    my $contributor = $args{contributor};
 
     my $score = calculate_internal_score( 'contributor', $contributor);
 
     my $person = $contributor->{person_uri}
         ? score_entity (
-            gcis           => $g,
-            resource       => $contributor->{person_uri},
-            type           => 'person',
+            resource => $contributor->{person_uri},
+            type     => 'person',
         )
         : {};
 
     my $organization = $contributor->{organization_uri}
         ? score_entity (
-            gcis           => $g,
-            resource       => $contributor->{organization_uri},
-            type           => 'organization',
+            resource => $contributor->{organization_uri},
+            type     => 'organization',
         )
         : {};
 
     # Unsure if we can pull this reference (pub<->contrib) out of GCIS via API. :(
     my $reference = $contributor->{reference}
         ? score_reference (
-            gcis           => $g,
-            resource       => $contributor->{reference},
-            type           => 'reference',
-            depth          => $depth,
+            resource => $contributor->{reference},
+            type     => 'reference',
+            depth    => $depth,
         )
         : {};
 
@@ -291,15 +281,14 @@ sub score_contributor {
 # Score a person or org (no connection pieces)
 sub score_entity {
     my %args = (@_);
-    my $g               = $args{gcis};
-    my $resource_uri    = $args{resource};
-    my $type            = $args{type};
+    my $resource_uri = $args{resource};
+    my $type         = $args{type};
 
     my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
     my $score = calculate_internal_score( $type, $resource);
 
     return { $resource_uri => {
-        score       => $score,
+        score      => $score,
         components => "TODO components",
     }};
 }
@@ -309,9 +298,8 @@ sub score_entity {
 
 sub score_references {
     my %args = (@_);
-    my $g               = $args{gcis};
-    my $resource_uri    = $args{resource};
-    my $depth           = $args{depth};
+    my $resource_uri = $args{resource};
+    my $depth        = $args{depth};
 
     my $references = $g->get("$resource_uri/reference") or die " Failed to retrieve references for resource: $resource_uri";
     return {} unless $references; # Empty references is fine.
@@ -319,10 +307,8 @@ sub score_references {
     my $references_scored = {};
     for my $ref ( @$references ) {
         my $ref_score = score_reference(
-            gcis           => $g,
-            reference      => $ref,
-            depth          => $depth,
-
+            reference => $ref,
+            depth     => $depth,
         );
         $references_scored->{$ref->{uri}} = $ref_score;
     }
@@ -331,9 +317,8 @@ sub score_references {
 
 sub score_reference {
     my %args = (@_);
-    my $g               = $args{gcis};
-    my $reference       = $args{reference};
-    my $depth           = $args{depth};
+    my $reference = $args{reference};
+    my $depth     = $args{depth};
 
     # NB Increase score when diving deeper!
     my $score = calculate_internal_score( 'reference', $reference );
@@ -345,10 +330,9 @@ sub score_reference {
     my $child_pub = {};
     if ( $child_pub_id && $MAX_DEPTH > $depth ) {
         $child_pub = score_publication(
-            gcis => $g,
             resource => $reference->{child_publication},
-            type => $type,
-            depth => $depth + 1,
+            type     => $type,
+            depth    => $depth + 1,
         );
     }
 
@@ -363,7 +347,7 @@ sub score_reference {
 ### SCORING SECTION
 
 sub calculate_internal_score {
-    my $type = shift;
+    my $type     = shift;
     my $resource = shift;
 
     print "" if $progress;
@@ -383,8 +367,8 @@ sub calculate_internal_score {
 }
 
 sub score_is {
-    my $quality = shift;
-    my $type = shift;
+    my $quality  = shift;
+    my $type     = shift;
     my $resource = shift;
 
 say "\tTesting for $quality" if $DEBUG;
@@ -443,7 +427,6 @@ sub load_rubric_and_components {
 }
 
 sub confirm_good_resource {
-    my $g = shift;
     my $resource_uri = shift;
 
     my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
@@ -464,9 +447,9 @@ sub confirm_good_resource {
 
 sub get_resource_type {
     my $resource_uri = shift;
-    my $g = Exim->new($URL, 'read');
+    my $gx = Exim->new($URL, 'read');
 
-    return $g->extract_type_from_uri($resource_uri);
+    return $gx->extract_type_from_uri($resource_uri);
 }
 
 1;
