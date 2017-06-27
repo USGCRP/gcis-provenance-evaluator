@@ -56,12 +56,12 @@ Secondly, this script will take a GCIS Publication URI and evaluate it based on 
 Finally, any nunber of scripts can be written to display or parse the evaluation. Initial thoughts are roll-up scoring that averages the scores to a certain depth, isolating all '1' ratings to focus work, or all '0' ratings to focus trimming.
 
 **Whiteboards**:  
-[Step 1 - generate ratings](./Step 1 - generate ratings.jpg)  
-Step 2 - tree-generate [1](./Step 2 - tree-generate-1.jpg) [2](./Step 2 - tree-generate-2.jpg)  
-[Step 3 - display-data](./Step 3 - display-data.jpg)  
+[Step 1 - generate ratings](./Step%201%20-%20generate%20ratings.jpg)  
+Step 2 - tree-generate [1](./Step%202%20-%20tree-generate-1.jpg) [2](./Step%202%20-%20tree-generate-2.jpg)  
+[Step 3 - display-data](./Step%203%20-%20display-data.jpg)  
 [Step 3 mockup](display-data-mockup.jpg)  
 
 ### Misc. Notes
 
-  - evaluation is assumed to check for 'acceptable' level first and scale down or up from there.
+  - evaluation is assumed to check for 'acceptable' level first and scale down or up from there. [Flow Chart](/Rating%20Assignment%20Flow%20Chart.png)
 
