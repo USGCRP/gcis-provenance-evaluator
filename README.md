@@ -45,3 +45,20 @@ TODO
 
 TODO
 
+## Usage
+
+  1. Establish Scores & Configuration
+    1. Establish a scoring metric for each GCIS resource
+      1. See [example](https://github.com/USGCRP/gcis-provenance-evaluator/blob/master/scores/internal_score.yaml), [format](#score-format)
+    1. Establish a scoring metric for each GCIS connection
+      1. See [example](https://github.com/USGCRP/gcis-provenance-evaluator/blob/master/scores/connection_score.yaml), [format](#score-format)
+    1. Establish the components for each GCIS resource
+      1. See [example](https://github.com/USGCRP/gcis-provenance-evaluator/blob/master/config/components.yaml), [format](#component-format)
+  1. Generate the score tree
+    1. Decide how many levels deep you want to analyse your resource.
+    1. Select your GCIS instance to run against (or load the pertinent database dump into a temp instance).
+    1. Run the command to generate the tree:
+      `./generate_resource_scores.pl --resouce /report/nca3 --tree_file ./nca3_tree.yaml`
+  1. Run analysis on the Score Tree
+    1. TODO
+
