@@ -568,8 +568,9 @@ person:
       required: 1
   poor: 
     - 
-      fields: []
-      required: -1
+      fields: 
+        - "contributors:0:organization_identifier"
+      required: 1
   very_good: 
     - 
       fields: []

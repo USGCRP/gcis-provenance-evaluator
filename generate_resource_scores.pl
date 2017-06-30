@@ -1,6 +1,5 @@
 #!/usr/bin/env perl
 
-
 =head1 NAME
 
 generate_resource_scores.pl -- generate the score tree for a resource
@@ -101,7 +100,6 @@ my $DEBUG = 1;
 my $MAX_DEPTH = 1;
 my $RUBRIC;
 my $COMPONENTS;
-my $g; # connection to the GCIS; set once.
 my $URL = "https://data.globalchange.gov";
 my $connection_score = "scores/connection_score.yaml";
 my $internal_score = "scores/internal_score.yaml";
@@ -136,20 +134,20 @@ pod2usage(verbose => 1, message => "$0: Tree_file option must be specified") unl
         pod2usage(verbose => 1, message => "$0: Tree_file $tree_file can't be opened for writing");
     }
 }
-$g = Gcis::Client->new(url => $URL);
+my $g = Gcis::Client->new(url => $URL);
 
 &main;
 
 sub main {
 
     my $greeting = <<END;
-Evaluating Provenance";
-    url                    : $URL";
-    resource               : $resource_uri";
-    output file            : $tree_file";
-    internal scores file   : $internal_score";
-    connection scores file : $connection_score";
-    components file        : $components_map";
+Evaluating Provenance
+    url                    : $URL
+    resource               : $resource_uri
+    output file            : $tree_file
+    internal scores file   : $internal_score
+    connection scores file : $connection_score
+    components file        : $components_map
 
 END
     say $greeting if $verbose;
@@ -160,9 +158,9 @@ END
 
     my $score_tree = {
         $resource_uri => score_publication(
-                            resource => $resource_uri,
-                            type     => $type,
-                            depth    => 0,
+                            resource_uri => $resource_uri,
+                            type         => $type,
+                            depth        => 0,
                          )
     };
 
@@ -184,7 +182,7 @@ END
 
 sub score_publication {
     my %args = (@_);
-    my $resource_uri = $args{resource};
+    my $resource_uri = $args{resource_uri};
     my $type         = $args{type};
     my $depth        = $args{depth};
 
@@ -194,7 +192,6 @@ sub score_publication {
     #my $contributors = {};
     my $contributors = score_contributors(
                             contributors => $resource->{contributors},
-                            resource     => $resource_uri,
                             depth        => $depth,
                          );
 
@@ -207,6 +204,11 @@ sub score_publication {
             depth    => $depth,
         );
     }
+    my $components = score_components(
+        resource => $resource,
+        type     => $type,
+        depth    => $depth,
+    );
 
     return {
         score       => $score,
@@ -214,7 +216,7 @@ sub score_publication {
             contributors => $contributors,
             references   => $references,
         },
-        components  => "TODO components",
+        components  => $components,
     };
 }
 
@@ -222,7 +224,6 @@ sub score_publication {
 
 sub score_contributors {
     my %args = (@_);
-    my $resource_uri = $args{resource};
     my $contributors = $args{contributors};
     my $depth        = $args{depth};
 
@@ -285,11 +286,13 @@ sub score_entity {
     my $type         = $args{type};
 
     my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
+    print "\t";
     my $score = calculate_internal_score( $type, $resource);
 
+    my $components = {}; # TODO
     return { $resource_uri => {
         score      => $score,
-        components => "TODO components",
+        components => $components,
     }};
 }
 
@@ -301,7 +304,7 @@ sub score_references {
     my $resource_uri = $args{resource};
     my $depth        = $args{depth};
 
-    my $references = $g->get("$resource_uri/reference") or die " Failed to retrieve references for resource: $resource_uri";
+    my $references = $g->get("$resource_uri/reference");
     return {} unless $references; # Empty references is fine.
 
     my $references_scored = {};
@@ -330,9 +333,9 @@ sub score_reference {
     my $child_pub = {};
     if ( $child_pub_id && $MAX_DEPTH > $depth ) {
         $child_pub = score_publication(
-            resource => $reference->{child_publication},
-            type     => $type,
-            depth    => $depth + 1,
+            resource_uri => $reference->{child_publication},
+            type         => $type,
+            depth        => $depth + 1,
         );
     }
 
@@ -344,6 +347,109 @@ sub score_reference {
     };
 }
 
+#### COMPONENTS SECTION
+
+sub score_components {
+    my %args = (@_);
+    my $resource = $args{resource};
+    my $type     = $args{type};
+    my $depth    = $args{depth};
+
+    my $component_types = [];
+say "Finding component types for $type";
+    my $optional = $COMPONENTS->{$type}->{optional};
+    my $required = $COMPONENTS->{$type}->{required};
+    return {} unless ( $optional || $required );
+    push @$component_types, @{ $COMPONENTS->{$type}->{optional} };
+    push @$component_types, @{ $COMPONENTS->{$type}->{required} };
+    return {} unless $component_types;
+
+
+    my $component_scores = {};
+    for my $component_type ( @$component_types ) {
+say "Scoring $component_type under $resource->{uri}";
+        if ( $component_type eq "activity" ) {
+            # multi
+            # Look under the "parents" section
+            for my $parent ( @{ $resource->{parents} } ) {
+                my $activity = $parent->{activity_uri};
+                next unless $activity;
+say "\t$component_type: $activity";
+                $component_scores->{activities}->{$activity} = score_publication(
+                    resource_uri => $activity,
+                    type         => $component_type,
+                    depth        => $depth,
+                );
+            }
+        }
+        elsif ( $component_type eq "journal" ) {
+            # sing
+            # Look under "journal_identifier"
+            my $journal_id = $resource->{journal_identifier};
+            next unless $journal_id;
+say "\t$component_type: $journal_id";
+            $component_scores->{journal}->{$journal_id} = score_publication(
+                resource_uri => "/journal/$journal_id",
+                type         => $component_type,
+                depth        => $depth,
+            );
+        }
+        elsif ( $component_type eq "chapter" ) {
+            # multi
+            # look under the "*" section, grab the identifier. Construct the uri.
+            my $plural_type = $component_type . "s";
+            for my $item ( @{ $resource->{$plural_type} } ) {
+                next unless $item;
+say "\t$component_type: $item->{identifier}";
+                $component_scores->{$plural_type}->{$item->{identifier}} = score_publication(
+                    resource_uri => "$resource->{uri}/$component_type/$item->{identifier}",
+                    type         => $component_type,
+                    depth        => $depth,
+                );
+            }
+
+        }
+        elsif ( grep { $component_type eq $_ } qw/image array/ ) {
+            # multi
+            # look under the "*" section, grab the identifier. Construct the uri.
+            my $plural_type = $component_type . "s";
+            for my $item ( @{ $resource->{$plural_type} } ) {
+                next unless $item;
+say "\t$component_type: $item->{identifier}";
+                $component_scores->{$plural_type}->{$item->{identifier}} = score_publication(
+                    resource_uri => "/$component_type/$item->{identifier}",
+                    type         => $component_type,
+                    depth        => $depth,
+                );
+            }
+
+        }
+        elsif ( grep { $component_type eq $_ } qw/figure finding table/ ) {
+            # multi
+            # type report? look under "report_*"
+            # otherwise, look under "*"
+            # grab the "uri" directly
+            my $component_name = $component_type;
+            if ( $type eq "report" ) {
+                $component_name = "report_" . $component_type;
+            };
+            my $plural_name = $component_name . "s"; # only for pulling info out
+            my $plural_type = $component_type . "s"; # store under the normal plural
+            for my $item ( @{ $resource->{$plural_name} } ) {
+                next unless $item;
+say "\t$component_type: $item->{uri}";
+                $component_scores->{$plural_type}->{$item->{uri}} = score_publication(
+                    resource_uri => "$item->{uri}",
+                    type         => $component_type,
+                    depth        => $depth,
+                );
+            }
+        }
+        # TODO files? here or in the main compare?
+    }
+    return $component_scores;
+}
+
 ### SCORING SECTION
 
 sub calculate_internal_score {
@@ -351,19 +457,34 @@ sub calculate_internal_score {
     my $resource = shift;
 
     print "" if $progress;
-    say "Testing $resource->{uri}" if $DEBUG;
-    if ( score_is('acceptable', $type, $resource) ) {
-        if ( score_is('good', $type, $resource) ) {
-            return 5 if score_is('very_good', $type, $resource);
-                                               # Very Good
-            return 4;                          # Good
-        }                                      #   are only checked after a determination of
-        return 3;                              # Acceptable
+    printf '%.80s', "Testing $resource->{uri}" if $DEBUG;
+    my ( $very_poor, $poor, $acceptable, $good, $very_good ) = 0;
+    $acceptable = score_is('acceptable', $type, $resource);
+    # we can either get a 1 (get the rank) or -1 (skip and try higher).
+    if ( $acceptable ) {
+        $good = score_is('good', $type, $resource);
+        if ( $good ) {
+            $very_good = score_is('very_good', $type, $resource);
+        }
     }
-    elsif ( score_is('poor', $type, $resource) ) {
-        return 2;                              # Poor
+    if ( $very_good == 1 ) {
+        say "\t: Very Good!" if $DEBUG;
+        return 5;
     }
-    return 1;                                  # Very Poor
+    elsif ( $good == 1 ) {
+        say "\t: Good!" if $DEBUG;
+        return 4;
+    }
+    elsif ( $acceptable == 1 ) {
+        say "\t: Acceptable!" if $DEBUG;
+        return 3;
+    }
+    if ( score_is('poor', $type, $resource) ) {
+        say "\t: Poor..." if $DEBUG;
+        return 2;
+    }
+    say "\t: Very Poor... :(" if $DEBUG;
+    return 1; 
 }
 
 sub score_is {
@@ -371,25 +492,57 @@ sub score_is {
     my $type     = shift;
     my $resource = shift;
 
-say "\tTesting for $quality" if $DEBUG;
+#say "\tTesting for $quality" if $DEBUG;
     # there can be multiple ways to get to the score
     for my $qualifying_grades ( @{ $RUBRIC->{$type}->{$quality} } ) {
         my @keys_to_look_for = @{ $qualifying_grades->{fields} };
         my $required_num_keys = $qualifying_grades->{required};
+        return 1 if $required_num_keys == -1;
         my $count = 0;
         for my $key ( @keys_to_look_for ) {
-            say "\t\t Checking Key $key, need $required_num_keys, have $count";
-            if ( exists $resource->{$key} && $resource->{$key} &&  $resource->{$key} ne '') {
-say "\t\t\tKey $key - Exists" if $DEBUG;
+# say "\t\t Checking Key $key, need $required_num_keys, have $count";
+            if ( $key =~ /:/ ) {
+                $count += score_subkey( key => $key, resource => $resource );
+            }
+            elsif ( exists $resource->{$key} && $resource->{$key} &&  $resource->{$key} ne '') {
+#say "\t\t\tKey $key - Exists" if $DEBUG;
                 $count++;
             }
             else {
-say "\t\t\tKey $key - NO Exists" if $DEBUG;
+#say "\t\t\tKey $key - NO Exists" if $DEBUG;
             }
             return 1 if $count == $required_num_keys;
         }
     }
 
+    return 0;
+}
+
+sub score_subkey {
+    my %args = @_;
+    my $multi_key = $args{key};
+    my $resource = $args{resource};
+
+    my @keys = split ':', $multi_key;
+
+    # attributes have subkeys in a hash
+    if ( $keys[0] eq 'attrs' ) {
+        if (
+          exists $resource->{$keys[0]}->{$keys[1]}
+          && $resource->{$keys[0]}->{$keys[1]}
+          &&  $resource->{$keys[0]}->{$keys[1]} ne '') {
+            return 1;
+        }
+    }
+    # files and figures have an array, and one of those has a key
+    elsif ( $keys[0] eq 'files' || $keys[0] eq 'figures' ) {
+        if (
+          exists $resource->{$keys[0]}->[$keys[1]]->{$keys[2]}
+          && $resource->{$keys[0]}->[$keys[1]]->{$keys[2]}
+          &&  $resource->{$keys[0]}->[$keys[1]]->{$keys[2]} ne '') {
+            return 1;
+        }
+    }
     return 0;
 }
 
@@ -416,7 +569,7 @@ sub load_rubric_and_components {
     my $connection_rubric = YAML::XS::LoadFile("$RealBin/$connection_score") or die "Could not load Connection Score file: $RealBin/$connection_score";
 
     say "Loading $RealBin/$internal_score and $RealBin/$connection_score";
-    my $COMPONENTS = YAML::XS::LoadFile("$RealBin/$components_map") or die "Could not load Components file $RealBin/$components_map";
+    $COMPONENTS = YAML::XS::LoadFile("$RealBin/$components_map") or die "Could not load Components file $RealBin/$components_map";
     my %rubric = ( %$internal_rubric, %$connection_rubric );
     $RUBRIC = \%rubric;
 
