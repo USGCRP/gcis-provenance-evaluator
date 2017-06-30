@@ -6,15 +6,23 @@ article:
     - activity
   required: 
     - journal
+activity:
+  required: []
+  optional: []
+array:
+  required: []
+  optional: []
 book: 
   optional: 
     - activity
+  required: []
 chapter: 
   optional: 
     - figure
     - finding
     - table
     - activity
+  required: []
 contributor: 
   optional: 
     - person
@@ -23,6 +31,7 @@ contributor:
 dataset: 
   optional: 
     - activity
+  required: []
 figure: 
   optional: 
     - activity
@@ -31,27 +40,35 @@ figure:
 finding: 
   optional: 
     - activity
+  required: []
 generic: 
   optional: 
     - activity
+  required: []
 image: 
   optional: 
     - activity
+  required: []
 instrument: 
   optional: 
     - activity
+  required: []
 journal: 
   optional: 
     - activity
+  required: []
 model: 
   optional: 
     - activity
+  required: []
 platform: 
   optional: 
     - activity
+  required: []
 reference: 
   required: 
     - publication
+  optional: []
 report: 
   optional: 
     - figure
@@ -59,9 +76,11 @@ report:
     - finding
     - chapter
     - activity
+  required: []
 scenario: 
   optional: 
     - activity
+  required: []
 table: 
   optional: 
     - activity
@@ -70,3 +89,4 @@ table:
 webpage: 
   optional: 
     - activity
+  required: []

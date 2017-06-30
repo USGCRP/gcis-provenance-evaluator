@@ -7,25 +7,25 @@ contributor:
   acceptable: 
     - 
       fields: 
-        - person_id
-        - reference_identifier
+        - person_uri
+        - reference_identifier # Not currently available from API
       required: 2
     - 
       fields: 
         - organization_uri
-        - reference_identifier
+        - reference_identifier # Not currently available from API
       required: 2
   good: 
     - 
       fields: 
-        - person_id
+        - person_uri
         - organization_uri
-        - reference_identifier
+        - reference_identifier # Not currently available from API
       required: 3
   poor: 
     - 
       fields: 
-        - person_id
+        - person_uri
         - organization_uri
       required: 1
   very_good: 
@@ -42,17 +42,20 @@ reference:
   acceptable: 
     - 
       fields: 
-        - child_publication_id
+        - child_publication
       required: 1
   good: 
     - 
-      fields: []
-      required: -1
-  poor: 
+      fields: 
+        - "attrs:DOI"
+        - "attrs:URL"
+      required: 1
     - 
       fields: 
-        - attrs
-      required: 1
+        - "attrs:Title"
+        - "attrs:Author"
+        - "attrs:reftype"
+      required: 3
   very_good: 
     - 
       fields: []
@@ -61,4 +64,9 @@ reference:
     - 
       fields: 
         - identifier
+      required: 1
+  poor: 
+    - 
+      fields: 
+        - attrs
       required: 1

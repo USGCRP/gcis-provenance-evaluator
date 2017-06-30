@@ -74,7 +74,7 @@ article:
       required: 2
     - 
       fields: 
-        - file_identifier
+        - "files:0:identifier"
         - title
       required: 2
   good: 
@@ -106,14 +106,14 @@ book:
       fields: 
         - isbn
         - url
-        - file_identifier
+        - "files:0:identifier"
       required: 1
   good: 
     - 
       fields: 
         - isbn
         - url
-        - file_identifier
+        - "files:0:identifier"
       required: 2
   poor: 
     - 
@@ -168,7 +168,6 @@ chapter:
     - 
       fields: 
         - number
-        - sort_key
       required: 1
   very_poor: 
     - 
@@ -348,14 +347,14 @@ image:
   acceptable: 
     - 
       fields: 
-        - figure_identifier
-        - file_identifier
+        - "figures:0:identifier"
+        - "files:0:identifier"
         - url
       required: 3
     - 
       fields: 
-        - figure_identifier
-        - file_identifier
+        - "figures:0:identifier"
+        - "files:0:identifier"
         - title
       required: 3
   good: 
@@ -368,8 +367,8 @@ image:
   poor: 
     - 
       fields: 
-        - figure_identifier
-        - file_identifier
+        - "figures:0:identifier"
+        - "files:0:identifier"
       required: 2
   very_good: 
     - 
@@ -644,14 +643,14 @@ report:
     - 
       fields: 
         - doi
-        - file_identifier
+        - "files:0:identifier"
         - url
       required: 1
   good: 
     - 
       fields: 
         - doi
-        - file_identifier
+        - "files:0:identifier"
         - url
       required: 2
   poor: 
@@ -663,9 +662,9 @@ report:
     - 
       fields: 
         - summary
-        - frequency
-        - topic
-        - in_library
+        #- frequency  # Not available via API
+        #- topic      # Not available via API
+        #- in_library # Not available via API
         - contact_note
         - contact_email
         - publication_year
@@ -676,7 +675,7 @@ report:
         - title
         - report_type_identifier
         - identifier
-        - _public
+        #- _public    # Not available via API
       required: 4
 scenario: 
   acceptable: 
