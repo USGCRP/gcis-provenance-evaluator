@@ -180,6 +180,14 @@ END
     return;
 }
 
+=head1 FUNCTIONS
+
+=cut
+
+=head2 score_publication
+
+=cut
+
 sub score_publication {
     my %args = (@_);
     my $resource_uri = $args{resource_uri};
@@ -222,6 +230,10 @@ sub score_publication {
 
 #### CONTRIBUTORS SECTION
 
+=head2 score_contributors
+
+=cut
+
 sub score_contributors {
     my %args = (@_);
     my $contributors = $args{contributors};
@@ -239,6 +251,10 @@ sub score_contributors {
     }
     return $contributors_scored;
 }
+
+=head2 score_contributor
+
+=cut
 
 sub score_contributor {
     my %args = (@_);
@@ -279,7 +295,12 @@ sub score_contributor {
 
 }
 
-# Score a person or org (no connection pieces)
+=head2 score_entity
+
+Score a person or org (no connection pieces)
+
+=cut
+
 sub score_entity {
     my %args = (@_);
     my $resource_uri = $args{resource};
@@ -299,6 +320,10 @@ sub score_entity {
 
 #### REFERENCES SECTION
 
+=head2 score_references
+
+=cut
+
 sub score_references {
     my %args = (@_);
     my $resource_uri = $args{resource};
@@ -317,6 +342,10 @@ sub score_references {
     }
     return $references_scored;
 }
+
+=head2 score_reference
+
+=cut
 
 sub score_reference {
     my %args = (@_);
@@ -348,6 +377,9 @@ sub score_reference {
 }
 
 #### COMPONENTS SECTION
+=head2 score_components
+
+=cut
 
 sub score_components {
     my %args = (@_);
@@ -452,6 +484,10 @@ say "\t$component_type: $item->{uri}";
 
 ### SCORING SECTION
 
+=head2 calculate_internal_score
+
+=cut
+
 sub calculate_internal_score {
     my $type     = shift;
     my $resource = shift;
@@ -487,6 +523,10 @@ sub calculate_internal_score {
     return 1; 
 }
 
+=head2 score_is
+
+=cut
+
 sub score_is {
     my $quality  = shift;
     my $type     = shift;
@@ -518,6 +558,10 @@ sub score_is {
     return 0;
 }
 
+=head2 score_subkey
+
+=cut
+
 sub score_subkey {
     my %args = @_;
     my $multi_key = $args{key};
@@ -548,6 +592,9 @@ sub score_subkey {
 
 ### UTILITY FUNCTIONS
 
+=head2 output_to_file
+=cut
+
 sub output_to_file {
     my $score_tree = shift;
     # given a perl hash of a tree, output some yaml file!
@@ -564,6 +611,9 @@ sub output_to_file {
     return;
 }
 
+=head2 load_rubric_and_components
+=cut
+
 sub load_rubric_and_components {
     my $internal_rubric = YAML::XS::LoadFile("$RealBin/$internal_score") or die "Could not load Internal Score file: $RealBin/$internal_score";
     my $connection_rubric = YAML::XS::LoadFile("$RealBin/$connection_score") or die "Could not load Connection Score file: $RealBin/$connection_score";
@@ -578,6 +628,9 @@ sub load_rubric_and_components {
 
     return;
 }
+
+=head2 confirm_good_resource
+=cut
 
 sub confirm_good_resource {
     my $resource_uri = shift;
@@ -597,6 +650,9 @@ sub confirm_good_resource {
 
     return 1;
 }
+
+=head2 get_resource_type
+=cut
 
 sub get_resource_type {
     my $resource_uri = shift;
