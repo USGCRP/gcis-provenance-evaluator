@@ -96,7 +96,6 @@ use v5.14;
 
 # local $YAML::Indent = 2;
 
-my $DEBUG = 1;
 my $MAX_DEPTH = 1;
 my $RUBRIC;
 my $COMPONENTS;
@@ -117,8 +116,6 @@ GetOptions(
   'help|?'              => sub { pod2usage(verbose => 2) },
 ) or die pod2usage(verbose => 1);
 
-# test mode - always verbose;
-$verbose = 1 if $DEBUG;
 # nice minimal output for long running progress, but only in non-verbose.
 $progress = 0 if $verbose;
 
@@ -148,6 +145,7 @@ Evaluating Provenance
     internal scores file   : $internal_score
     connection scores file : $connection_score
     components file        : $components_map
+    depth                  : $depth
 
 END
     say $greeting if $verbose;
@@ -164,17 +162,6 @@ END
                          )
     };
 
-    if ( $verbose ) {
-        open( DEBUG_FILE, ">", "./debug_score_tree.dump" ) or die $!;
-        {
-            local $Data::Dumper::Indent = 1;
-            print DEBUG_FILE "Score Tree: " . Dumper $score_tree;
-        }
-        close DEBUG_FILE;
-        say "Printed score tree hash dump to ./debug_score_tree.dump";
-    };
-
-
     output_to_file( $score_tree );
     say "" if $progress;
     return;
@@ -186,10 +173,10 @@ END
 
 =head2 score_publication
 
-Given a GCIS Resource URI, its type, and our current depth, returns a 
+Given a GCIS Resource URI, its type, and our current depth, returns a
 publication score subtree for that publication.
 
-A publication score subtree consists of a score, a connections hash of 
+A publication score subtree consists of a score, a connections hash of
 contributors and references score subtrees, and a components score subtree.
 
 =cut
@@ -260,11 +247,11 @@ sub score_contributors {
 
 =head2 score_contributor
 
-Given a single contributor object and our current depth, return the score 
+Given a single contributor object and our current depth, return the score
 subtree for that contributor.
 
-Contributor subtree consists of a score, a person entity, and organization 
-entity, and a reference. 
+Contributor subtree consists of a score, a person entity, and organization
+entity, and a reference.
 
 =cut
 
@@ -309,7 +296,7 @@ sub score_contributor {
 
 =head2 score_entity
 
-Given a person or organiation object and its type, return the score 
+Given a person or organiation object and its type, return the score
 subtree for that entity.
 
 Entity subtree consists of a score and a components subtree.
@@ -370,10 +357,10 @@ sub score_references {
 
 =head2 score_reference
 
-Given a single reference object and our current depth, return the score 
+Given a single reference object and our current depth, return the score
 subtree for that reference.
 
-Reference subtree consisdes of a score plus a single child publication. 
+Reference subtree consisdes of a score plus a single child publication.
 Child publication will only be analyzed if our depth is not maxed.
 
 =cut
@@ -383,7 +370,6 @@ sub score_reference {
     my $reference = $args{reference};
     my $depth     = $args{depth};
 
-    # NB Increase score when diving deeper!
     my $score = calculate_internal_score( 'reference', $reference );
 
     # does child pub exist?
@@ -425,7 +411,6 @@ sub score_components {
     my $depth    = $args{depth};
 
     my $component_types = [];
-say "Finding component types for $type";
     my $optional = $COMPONENTS->{$type}->{optional};
     my $required = $COMPONENTS->{$type}->{required};
     return {} unless ( $optional || $required );
@@ -436,14 +421,12 @@ say "Finding component types for $type";
 
     my $component_scores = {};
     for my $component_type ( @$component_types ) {
-say "Scoring $component_type under $resource->{uri}";
         if ( $component_type eq "activity" ) {
             # multi
             # Look under the "parents" section
             for my $parent ( @{ $resource->{parents} } ) {
                 my $activity = $parent->{activity_uri};
                 next unless $activity;
-say "\t$component_type: $activity";
                 $component_scores->{activities}->{$activity} = score_publication(
                     resource_uri => $activity,
                     type         => $component_type,
@@ -456,7 +439,6 @@ say "\t$component_type: $activity";
             # Look under "journal_identifier"
             my $journal_id = $resource->{journal_identifier};
             next unless $journal_id;
-say "\t$component_type: $journal_id";
             $component_scores->{journal}->{$journal_id} = score_publication(
                 resource_uri => "/journal/$journal_id",
                 type         => $component_type,
@@ -469,7 +451,6 @@ say "\t$component_type: $journal_id";
             my $plural_type = $component_type . "s";
             for my $item ( @{ $resource->{$plural_type} } ) {
                 next unless $item;
-say "\t$component_type: $item->{identifier}";
                 $component_scores->{$plural_type}->{$item->{identifier}} = score_publication(
                     resource_uri => "$resource->{uri}/$component_type/$item->{identifier}",
                     type         => $component_type,
@@ -484,7 +465,6 @@ say "\t$component_type: $item->{identifier}";
             my $plural_type = $component_type . "s";
             for my $item ( @{ $resource->{$plural_type} } ) {
                 next unless $item;
-say "\t$component_type: $item->{identifier}";
                 $component_scores->{$plural_type}->{$item->{identifier}} = score_publication(
                     resource_uri => "/$component_type/$item->{identifier}",
                     type         => $component_type,
@@ -506,7 +486,6 @@ say "\t$component_type: $item->{identifier}";
             my $plural_type = $component_type . "s"; # store under the normal plural
             for my $item ( @{ $resource->{$plural_name} } ) {
                 next unless $item;
-say "\t$component_type: $item->{uri}";
                 $component_scores->{$plural_type}->{$item->{uri}} = score_publication(
                     resource_uri => "$item->{uri}",
                     type         => $component_type,
@@ -541,11 +520,9 @@ sub calculate_internal_score {
     my $type     = shift;
     my $resource = shift;
 
-    print "" if $progress;
-    printf '%.80s', "Testing $resource->{uri}" if $DEBUG;
+    print "." if $progress;
     my ( $very_poor, $poor, $acceptable, $good, $very_good ) = 0;
     $acceptable = score_is('acceptable', $type, $resource);
-    # we can either get a 1 (get the rank) or -1 (skip and try higher).
     if ( $acceptable ) {
         $good = score_is('good', $type, $resource);
         if ( $good ) {
@@ -553,28 +530,24 @@ sub calculate_internal_score {
         }
     }
     if ( $very_good == 1 ) {
-        say "\t: Very Good!" if $DEBUG;
         return 5;
     }
     elsif ( $good == 1 ) {
-        say "\t: Good!" if $DEBUG;
         return 4;
     }
     elsif ( $acceptable == 1 ) {
-        say "\t: Acceptable!" if $DEBUG;
         return 3;
     }
+
     if ( score_is('poor', $type, $resource) ) {
-        say "\t: Poor..." if $DEBUG;
         return 2;
     }
-    say "\t: Very Poor... :(" if $DEBUG;
-    return 1; 
+    return 1;
 }
 
 =head2 score_is
 
-Given a resource, its type, and a quality level, return if 
+Given a resource, its type, and a quality level, return if
 the resource has enough keys to qualify for that quality level.
 
 Returns 1 if it meets the quality, 0 if it does not, and -1 if that
@@ -587,7 +560,6 @@ sub score_is {
     my $type     = shift;
     my $resource = shift;
 
-#say "\tTesting for $quality" if $DEBUG;
     # there can be multiple ways to get to the score
     for my $qualifying_grades ( @{ $RUBRIC->{$type}->{$quality} } ) {
         my @keys_to_look_for = @{ $qualifying_grades->{fields} };
@@ -595,16 +567,11 @@ sub score_is {
         return 1 if $required_num_keys == -1;
         my $count = 0;
         for my $key ( @keys_to_look_for ) {
-# say "\t\t Checking Key $key, need $required_num_keys, have $count";
             if ( $key =~ /:/ ) {
                 $count += score_subkey( key => $key, resource => $resource );
             }
             elsif ( exists $resource->{$key} && $resource->{$key} &&  $resource->{$key} ne '') {
-#say "\t\t\tKey $key - Exists" if $DEBUG;
                 $count++;
-            }
-            else {
-#say "\t\t\tKey $key - NO Exists" if $DEBUG;
             }
             return 1 if $count == $required_num_keys;
         }
@@ -615,12 +582,12 @@ sub score_is {
 
 =head2 score_subkey
 
-Handles scoring when the desired item is stored inside a 
+Handles scoring when the desired item is stored inside a
 hash, array, or other combination thereof.
 
 Takes a colon seperated key and the resource.
 
-Knows how to handle: attrs:Foo, files:N:Foo, and figures:N:Foo 
+Knows how to handle: attrs:Foo, files:N:Foo, and figures:N:Foo
 
 Returns 1 if the key exists. 0 otherwise.
 
