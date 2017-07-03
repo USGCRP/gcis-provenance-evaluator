@@ -145,7 +145,7 @@ Evaluating Provenance
     internal scores file   : $internal_score
     connection scores file : $connection_score
     components file        : $components_map
-    depth                  : $depth
+    depth                  : $MAX_DEPTH
 
 END
     say $greeting if $verbose;
@@ -266,6 +266,7 @@ sub score_contributor {
         ? score_entity (
             resource => $contributor->{person_uri},
             type     => 'person',
+            depth    => $depth,
         )
         : {};
 
@@ -273,6 +274,7 @@ sub score_contributor {
         ? score_entity (
             resource => $contributor->{organization_uri},
             type     => 'organization',
+            depth    => $depth,
         )
         : {};
 
@@ -307,6 +309,7 @@ sub score_entity {
     my %args = (@_);
     my $resource_uri = $args{resource};
     my $type         = $args{type};
+    my $depth        = $args{depth};
 
     my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
     print "\t";
