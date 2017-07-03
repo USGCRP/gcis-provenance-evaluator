@@ -201,23 +201,22 @@ sub score_publication {
     my $depth        = $args{depth};
 
     my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
+
     my $score = calculate_internal_score( $type, $resource);
 
-    #my $contributors = {};
-    my $contributors = score_contributors(
+    my $connections->{contributors} = score_contributors(
                             contributors => $resource->{contributors},
                             depth        => $depth,
                          );
-
-
-    # Only these types get references
-    my $references = {};
+    # Only some publication types get references
+    $connections->{references} = {};
     if ( grep { $type eq $_ } qw/report chapter figure finding table webpage book dataset journal/ ) {
-        $references = score_references(
+        $connections->{references} = score_references(
             resource => $resource_uri,
             depth    => $depth,
         );
     }
+
     my $components = score_components(
         resource => $resource,
         type     => $type,
@@ -226,10 +225,7 @@ sub score_publication {
 
     return {
         score       => $score,
-        connections => {
-            contributors => $contributors,
-            references   => $references,
-        },
+        connections => $connections,
         components  => $components,
     };
 }
@@ -329,7 +325,12 @@ sub score_entity {
     print "\t";
     my $score = calculate_internal_score( $type, $resource);
 
-    my $components = {}; # TODO
+    my $components = score_components(
+        resource => $resource,
+        type     => $type,
+        depth    => $depth,
+    );
+
     return { $resource_uri => {
         score      => $score,
         components => $components,
@@ -684,15 +685,16 @@ Load in the YAML rubrics, components.
 =cut
 
 sub load_rubric_and_components {
-    my $internal_rubric = YAML::XS::LoadFile("$RealBin/$internal_score") or die "Could not load Internal Score file: $RealBin/$internal_score";
-    my $connection_rubric = YAML::XS::LoadFile("$RealBin/$connection_score") or die "Could not load Connection Score file: $RealBin/$connection_score";
+    my $internal_rubric = YAML::XS::LoadFile("$RealBin/$internal_score")
+        or die "Could not load Internal Score file: $RealBin/$internal_score";
+    my $connection_rubric = YAML::XS::LoadFile("$RealBin/$connection_score")
+        or die "Could not load Connection Score file: $RealBin/$connection_score";
 
-    say "Loading $RealBin/$internal_score and $RealBin/$connection_score";
-    $COMPONENTS = YAML::XS::LoadFile("$RealBin/$components_map") or die "Could not load Components file $RealBin/$components_map";
+    $COMPONENTS = YAML::XS::LoadFile("$RealBin/$components_map")
+        or die "Could not load Components file $RealBin/$components_map";
     my %rubric = ( %$internal_rubric, %$connection_rubric );
     $RUBRIC = \%rubric;
 
-    say "Loaded rubric and component files successfully" if $verbose;
     print "." if $progress;
 
     return;
