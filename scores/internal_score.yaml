@@ -165,10 +165,6 @@ chapter:
       fields: 
         - number
       required: 1
-    - 
-      fields: 
-        - number
-      required: 1
   very_poor: 
     - 
       fields: 
@@ -427,7 +423,6 @@ journal:
     - 
       fields: 
         - title
-        - publisher
         - url
         - print_issn
         - online_issn
@@ -436,8 +431,7 @@ journal:
     - 
       fields: 
         - title
-        - publisher
-      required: 2
+      required: 1
   very_good: 
     - 
       fields: 
@@ -459,8 +453,9 @@ model:
   good: 
     - 
       fields: 
+        - name
         - website
-      required: 1
+      required: 2
     - 
       fields: 
         - name
@@ -741,6 +736,7 @@ webpage:
     - 
       fields: 
         - access_date
+        - title
       required: 1
   poor: 
     - 
@@ -748,9 +744,8 @@ webpage:
       required: -1
   very_good: 
     - 
-      fields: 
-        - title
-      required: 1
+      fields: []
+      required: -1
   very_poor: 
     - 
       fields: []
