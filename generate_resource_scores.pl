@@ -186,6 +186,12 @@ END
 
 =head2 score_publication
 
+Given a GCIS Resource URI, its type, and our current depth, returns a 
+publication score subtree for that publication.
+
+A publication score subtree consists of a score, a connections hash of 
+contributors and references score subtrees, and a components score subtree.
+
 =cut
 
 sub score_publication {
@@ -232,6 +238,10 @@ sub score_publication {
 
 =head2 score_contributors
 
+Given an array of contributors and the current depth, score all the contributors.
+
+Returns a hash of contributor score trees.
+
 =cut
 
 sub score_contributors {
@@ -253,6 +263,12 @@ sub score_contributors {
 }
 
 =head2 score_contributor
+
+Given a single contributor object and our current depth, return the score 
+subtree for that contributor.
+
+Contributor subtree consists of a score, a person entity, and organization 
+entity, and a reference. 
 
 =cut
 
@@ -297,7 +313,10 @@ sub score_contributor {
 
 =head2 score_entity
 
-Score a person or org (no connection pieces)
+Given a person or organiation object and its type, return the score 
+subtree for that entity.
+
+Entity subtree consists of a score and a components subtree.
 
 =cut
 
@@ -322,6 +341,11 @@ sub score_entity {
 
 =head2 score_references
 
+Given a resource_uri and the current depth, score all the references related
+to that resource.
+
+Returns a hash of reference score trees.
+
 =cut
 
 sub score_references {
@@ -344,6 +368,12 @@ sub score_references {
 }
 
 =head2 score_reference
+
+Given a single reference object and our current depth, return the score 
+subtree for that reference.
+
+Reference subtree consisdes of a score plus a single child publication. 
+Child publication will only be analyzed if our depth is not maxed.
 
 =cut
 
@@ -378,6 +408,12 @@ sub score_reference {
 
 #### COMPONENTS SECTION
 =head2 score_components
+
+Muckity function dealing with the various ways to find your components through the GCIS API.
+Can handle types Activity, Journal, Chapter, Image, Array, Figure, Finding, and Table.
+
+Given a resource, its type, and the analysis depth, return a hash of all the component types
+for this resource, each holding an array of those publications' score subtrees.
 
 =cut
 
@@ -486,6 +522,18 @@ say "\t$component_type: $item->{uri}";
 
 =head2 calculate_internal_score
 
+Given a resource and its type, determine which provenance
+rating the resource meets.
+
+Process:
+  Check for 'Acceptable'
+  If 'Acceptable' (or skip), Check for 'Good'
+  If 'Good' (or skip), Check for 'Very Good'
+  If none of those returned 1 (all 0 or skip), Check for 'Poor'
+  If not 'Poor', return 'Very Poor'
+
+Returns 1-5, corresponding to the rating.
+
 =cut
 
 sub calculate_internal_score {
@@ -525,6 +573,12 @@ sub calculate_internal_score {
 
 =head2 score_is
 
+Given a resource, its type, and a quality level, return if 
+the resource has enough keys to qualify for that quality level.
+
+Returns 1 if it meets the quality, 0 if it does not, and -1 if that
+quality level is to be skipped.
+
 =cut
 
 sub score_is {
@@ -560,6 +614,15 @@ sub score_is {
 
 =head2 score_subkey
 
+Handles scoring when the desired item is stored inside a 
+hash, array, or other combination thereof.
+
+Takes a colon seperated key and the resource.
+
+Knows how to handle: attrs:Foo, files:N:Foo, and figures:N:Foo 
+
+Returns 1 if the key exists. 0 otherwise.
+
 =cut
 
 sub score_subkey {
@@ -593,6 +656,9 @@ sub score_subkey {
 ### UTILITY FUNCTIONS
 
 =head2 output_to_file
+
+Print out the YAML score tree.
+
 =cut
 
 sub output_to_file {
@@ -612,6 +678,9 @@ sub output_to_file {
 }
 
 =head2 load_rubric_and_components
+
+Load in the YAML rubrics, components.
+
 =cut
 
 sub load_rubric_and_components {
@@ -630,6 +699,9 @@ sub load_rubric_and_components {
 }
 
 =head2 confirm_good_resource
+
+Confirm we have a singular GCIS resource, and not an array.
+
 =cut
 
 sub confirm_good_resource {
@@ -652,6 +724,9 @@ sub confirm_good_resource {
 }
 
 =head2 get_resource_type
+
+Given a resource URI, return the type.
+
 =cut
 
 sub get_resource_type {
