@@ -442,8 +442,9 @@ sub score_components {
             # Look under "journal_identifier"
             my $journal_id = $resource->{journal_identifier};
             next unless $journal_id;
-            $component_scores->{journal}->{$journal_id} = score_publication(
-                resource_uri => "/journal/$journal_id",
+            my $item_uri = "/journal/$journal_id";
+            $component_scores->{journal}->{$item_uri} = score_publication(
+                resource_uri => $item_uri,
                 type         => $component_type,
                 depth        => $depth,
             );
@@ -454,8 +455,9 @@ sub score_components {
             my $plural_type = $component_type . "s";
             for my $item ( @{ $resource->{$plural_type} } ) {
                 next unless $item;
-                $component_scores->{$plural_type}->{$item->{identifier}} = score_publication(
-                    resource_uri => "$resource->{uri}/$component_type/$item->{identifier}",
+                my $item_uri = "$resource->{uri}/$component_type/$item->{identifier}";
+                $component_scores->{$plural_type}->{$item_uri} = score_publication(
+                    resource_uri => $item_uri,
                     type         => $component_type,
                     depth        => $depth,
                 );
@@ -468,8 +470,9 @@ sub score_components {
             my $plural_type = $component_type . "s";
             for my $item ( @{ $resource->{$plural_type} } ) {
                 next unless $item;
-                $component_scores->{$plural_type}->{$item->{identifier}} = score_publication(
-                    resource_uri => "/$component_type/$item->{identifier}",
+                my $item_uri = "/$component_type/$item->{identifier}";
+                $component_scores->{$plural_type}->{$item_uri} = score_publication(
+                    resource_uri => $item_uri,
                     type         => $component_type,
                     depth        => $depth,
                 );
