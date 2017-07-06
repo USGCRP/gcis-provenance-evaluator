@@ -59,7 +59,7 @@ use strict;
 use v5.14;
 
 my $COMPONENTS;
-my $components_map = "../config/components.yaml";
+my $components_map = "config/components.yaml";
 GetOptions(
   'tree_file=s'         => \(my $tree_file),
   'd3_file=s'           => \(my $d3_file),
@@ -145,6 +145,12 @@ sub get_children {
     # Handle each component type subtree
     foreach my $component_type ( %{$tree->{components}} ) {
         my $childs = process_subtree($tree->{components}->{$component_type}, 'publication');
+        push @$children, @$childs;
+    }
+    # Handle the child_pub type subtree
+    if ( exists $tree->{child_publication}
+             && $tree->{child_publication} ) {
+        my $childs = process_subtree($tree->{child_publication}, 'publication');
         push @$children, @$childs;
     }
     # Handle the contributor type subtree
