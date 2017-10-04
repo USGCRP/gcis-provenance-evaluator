@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+</style>
+<svg width="3960" height="3200"></svg><br/>
+<button id="save">Save as Image</button><br/>
+<canvas width="960" height="500" style="display:none"></canvas><br/>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
+
+//d3.json("nca3_ch2_depth1_nodelinks.json", function(error, graph) {
+d3.json("nca3_ch2.json", function(error, graph) {
+  if (error) throw error;
+
+  var link = svg.append("g")
+      .attr("class", "links")
+    .selectAll("line")
+    .data(graph.links)
+    .enter().append("line")
+      .attr("stroke-width", 1);
+      //.attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+  var node = svg.append("g")
+      .attr("class", "nodes")
+    .selectAll("circle")
+    .data(graph.nodes)
+    .enter().append("circle")
+      //.attr("r", 5)
+      .attr("r", function(d) { return sizing(d); })
+      .attr("fill", function(d) { return color(d.type); })
+      .attr("text", function(d) { return label(d.type); })
+      .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));
+
+  node.append("title")
+      .text(function(d) { return d.id; });
+
+
+  simulation
+      .nodes(graph.nodes)
+      .on("tick", ticked);
+
+  simulation.force("link")
+      .links(graph.links);
+
+  function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+  }
+});
+
+//d3.select("#save").on("click", function(){
+//  var html = d3.select("svg")
+//        .attr("version", 1.1)
+//        .attr("xmlns", "http://www.w3.org/2000/svg")
+//        .node().parentNode.innerHTML;
+//
+//  //console.log(html);
+//  var imgsrc = 'data:image/svg+xml;base64,'+ btoa(html);
+//  var img = '<img src="'+imgsrc+'">'; 
+//  d3.select("#svgdataurl").html(img);
+//
+//
+//  var canvas = document.querySelector("canvas"),
+//   context = canvas.getContext("2d");
+//
+//  var image = new Image;
+//  image.src = imgsrc;
+//  image.onload = function() {
+//   context.drawImage(image, 0, 0);
+//
+//   var canvasdata = canvas.toDataURL("image/png");
+//
+//   var pngimg = '<img src="'+canvasdata+'">'; 
+//     d3.select("#pngdataurl").html(pngimg);
+//
+//   var a = document.createElement("a");
+//   a.download = "sample.png";
+//   a.href = canvasdata;
+//   a.click();
+//  };
+//
+//});
+
+
+function label(d) {
+  if ( d.type == "primary" ) {
+      return "Start";
+  }
+  if ( d.type == "reference" ) {
+      return d.type
+  }
+  if ( d.type == "contributor" ) {
+      return "2";
+  }
+  if ( d.type == "reference" ) {
+      return "15";
+  }
+  if ( d.type == "entity" ) {
+      return "10";
+  }
+  if ( d.type == "org" ) {
+      return "10";
+  }
+  return 5;
+}
+
+function sizing(d) {
+  if ( d.type == "primary" ) {
+      return "25";
+  }
+  if ( d.type == "figure" ) {
+      return "20";
+  }
+  if ( d.type == "publication" ) {
+      return "20";
+  }
+  if ( d.type == "contributor" ) {
+      return "2";
+  }
+  if ( d.type == "reference" ) {
+      return "2";
+  }
+  if ( d.type == "entity" ) {
+      return "10";
+  }
+  if ( d.type == "org" ) {
+      return "10";
+  }
+  return 5;
+}
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+function binaryblob(){
+ var byteString = atob(document.querySelector("canvas").toDataURL().replace(/^data:image\/(png|jpg);base64,/, ""));
+ var ia = new Uint8Array(ab);
+ for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    var dataView = new DataView(ab);
+ var blob = new Blob([dataView], {type: "image/png"});
+ var DOMURL = self.URL || self.webkitURL || self;
+ var newurl = DOMURL.createObjectURL(blob);
+
+ var img = '<img src="'+newurl+'">'; 
+  d3.select("#img").html(img);
+}
+
+d3.select("#save").on("click", function img_and_link() {
+  $('body').append(
+    $('<a>')
+      .attr('href-lang', 'image/svg+xml')
+      .attr('href', 'data:image/svg+xml;utf8,' +  unescape($('svg')[0].outerHTML))
+      .text('Download')
+  );
+});
+
+</script>
+

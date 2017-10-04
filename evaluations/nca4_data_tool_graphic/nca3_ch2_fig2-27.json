@@ -1,0 +1,181 @@
+{
+   "links" : [
+      {
+         "target" : "/person/1025",
+         "source" : "/contributor/2522"
+      },
+      {
+         "target" : "/organization/cooperative-institute-climate-satellites-nc",
+         "source" : "/contributor/2522"
+      },
+      {
+         "source" : "/image/834f7624-40de-4a09-9ced-faaca30d4d6d",
+         "target" : "/activity/834f7624-nca3-amic-r201308-process"
+      },
+      {
+         "source" : "/image/834f7624-40de-4a09-9ced-faaca30d4d6d",
+         "target" : "/contributor/2522"
+      },
+      {
+         "source" : "/contributor/19071",
+         "target" : "/organization/iwa-publishing"
+      },
+      {
+         "target" : "/contributor/19071",
+         "source" : "/journal/water-quality-research-journal-canada"
+      },
+      {
+         "source" : "/contributor/17436",
+         "target" : "/person/5217"
+      },
+      {
+         "source" : "/contributor/17436",
+         "target" : "/organization/university-michigan"
+      },
+      {
+         "source" : "/contributor/17435",
+         "target" : "/person/5217"
+      },
+      {
+         "target" : "/organization/cooperative-institute-limnology-ecosystem-research",
+         "source" : "/contributor/17435"
+      },
+      {
+         "source" : "/contributor/17427",
+         "target" : "/person/5129"
+      },
+      {
+         "source" : "/contributor/17427",
+         "target" : "/organization/national-oceanic-atmospheric-administration-great-lakes-environmental-research-laboratory"
+      },
+      {
+         "source" : "/article/10.2166/wqrjc.2012.009",
+         "target" : "/journal/water-quality-research-journal-canada"
+      },
+      {
+         "target" : "/contributor/17436",
+         "source" : "/article/10.2166/wqrjc.2012.009"
+      },
+      {
+         "source" : "/article/10.2166/wqrjc.2012.009",
+         "target" : "/contributor/17435"
+      },
+      {
+         "target" : "/contributor/17427",
+         "source" : "/article/10.2166/wqrjc.2012.009"
+      },
+      {
+         "target" : "/article/10.2166/wqrjc.2012.009",
+         "source" : "/reference/334caaf0-faab-4f7f-8086-c1b216a3b371"
+      },
+      {
+         "source" : "/report/nca3/chapter/our-changing-climate/figure/ice-cover-in-the-great-lakes",
+         "target" : "/image/834f7624-40de-4a09-9ced-faaca30d4d6d"
+      },
+      {
+         "target" : "/contributor/2522",
+         "source" : "/report/nca3/chapter/our-changing-climate/figure/ice-cover-in-the-great-lakes"
+      },
+      {
+         "target" : "/reference/334caaf0-faab-4f7f-8086-c1b216a3b371",
+         "source" : "/report/nca3/chapter/our-changing-climate/figure/ice-cover-in-the-great-lakes"
+      }
+   ],
+   "nodes" : [
+      {
+         "score" : "4",
+         "id" : "/report/nca3/chapter/our-changing-climate/figure/ice-cover-in-the-great-lakes",
+         "type" : "primary"
+      },
+      {
+         "type" : "component",
+         "score" : "3",
+         "id" : "/image/834f7624-40de-4a09-9ced-faaca30d4d6d"
+      },
+      {
+         "type" : "component",
+         "id" : "/activity/834f7624-nca3-amic-r201308-process",
+         "score" : "5"
+      },
+      {
+         "id" : "/contributor/2522",
+         "score" : "2",
+         "type" : "contributor"
+      },
+      {
+         "type" : "entity",
+         "score" : "5",
+         "id" : "/person/1025"
+      },
+      {
+         "score" : "5",
+         "id" : "/organization/cooperative-institute-climate-satellites-nc",
+         "type" : "org"
+      },
+      {
+         "id" : "/reference/334caaf0-faab-4f7f-8086-c1b216a3b371",
+         "score" : "5",
+         "type" : "reference"
+      },
+      {
+         "score" : "5",
+         "id" : "/article/10.2166/wqrjc.2012.009",
+         "type" : "publication"
+      },
+      {
+         "type" : "component",
+         "score" : "4",
+         "id" : "/journal/water-quality-research-journal-canada"
+      },
+      {
+         "score" : "2",
+         "id" : "/contributor/19071",
+         "type" : "contributor"
+      },
+      {
+         "type" : "org",
+         "id" : "/organization/iwa-publishing",
+         "score" : "5"
+      },
+      {
+         "type" : "contributor",
+         "id" : "/contributor/17436",
+         "score" : "2"
+      },
+      {
+         "type" : "entity",
+         "id" : "/person/5217",
+         "score" : "3"
+      },
+      {
+         "id" : "/organization/university-michigan",
+         "score" : "5",
+         "type" : "org"
+      },
+      {
+         "type" : "contributor",
+         "id" : "/contributor/17435",
+         "score" : "2"
+      },
+      {
+         "type" : "org",
+         "score" : "5",
+         "id" : "/organization/cooperative-institute-limnology-ecosystem-research"
+      },
+      {
+         "type" : "contributor",
+         "id" : "/contributor/17427",
+         "score" : "2"
+      },
+      {
+         "score" : "3",
+         "id" : "/person/5129",
+         "type" : "entity"
+      },
+      {
+         "score" : "5",
+         "id" : "/organization/national-oceanic-atmospheric-administration-great-lakes-environmental-research-laboratory",
+         "type" : "org"
+      }
+   ]
+}
