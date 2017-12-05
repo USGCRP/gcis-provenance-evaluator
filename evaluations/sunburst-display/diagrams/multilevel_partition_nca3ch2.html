@@ -50,8 +50,8 @@ var arc = d3.svg.arc()
     .innerRadius(function(d) { return radius / (level + 1)  * d.depth; })
     .outerRadius(function(d) { return radius / (level + 1)  * (d.depth + 1) - 1; });
 
-//d3.json("nca3_ch2_depth1.json", function(error, root) {
-d3.json("example_gcis_d3_scoretree.json", function(error, root) {
+d3.json("json/nca3_ch2_depth1.json", function(error, root) {
+//d3.json("json/example_gcis_d3_scoretree.json", function(error, root) {
   if (error) throw error;
 
   // Compute the initial layout on the entire tree to sum sizes.
@@ -224,6 +224,6 @@ d3.select(self.frameElement).style("height", margin.top + margin.bottom + "px");
 <p>Multilevel Partition Sunburst by Kathryn Tipton. <br/>
 Based on <a href="https://bl.ocks.org/mbostock/5944371">Bilevel Partiton by Mike Bostock</a>. Released under the <a href="https://opensource.org/licenses/GPL-3.0"> GNU General Public License, version 3</a><br/><br/>
 Data from <a href="https://data.globalchange.gov">US Global Change Research Program - Global Change Information System</a>, <a href="https://data.globalchange.gov/report/indicator-annual-greenhouse-gas-index-2016">Indicator: Annual Greenhouse Gas Index</a></p>
-<p><a href="./multilevel_partition_cssrCh2.html">See the diagram for CSSR Chapter 2</a></p>
+<p><a href="./">See other sunburst diagrams</a></p>
 </body>
 </html>
