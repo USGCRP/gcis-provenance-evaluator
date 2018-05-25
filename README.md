@@ -83,7 +83,7 @@ To Document
 
 To Document
 
-## Usage
+## Project Usage
 
   1. Establish Scores & Configuration
      1. Establish a scoring metric for each GCIS resource
@@ -95,9 +95,26 @@ To Document
   1. Generate the score tree
      1. Decide how many levels deep you want to analyse your resource.
      1. Select your GCIS instance to run against (or load the pertinent database dump into a local instance) (default production).
-     1. Run the command to generate the tree:  
-       `./generate_resource_scores.pl --resouce /report/nca3/chapter/executive-summary --tree_file ./nca3_ch1_defaultscores_metrics.yaml`
-     1. Name the trees in an informative way and store them somewhere safe!
+     1. Run the command to generate the tree: See next section.  
+       - Name the trees in an informative way and store them somewhere safe!
   1. Run analysis on the Score Tree
      1. TODO
 
+## Generating Scores
+
+
+**Note 1:** This script is _long running_ on larger chapters! To be safe, you should run it in a screen session on a long-living server to prevent interruptions. For our purposes at USGCRP, I suggest running this script on data-review. 
+
+**Note 2:** This process is likely to generate a multitude of output trees we will want to keep track of. I strongly encourage a strict naming convention: "REPORT_CHAPTER_COMPONENT_SCORING_metrics.yaml".  
+So, if you were to run this on the Executive Summary of the NCA3 with the default scores: "nca3_ch1_defaultscoring_metrics.yaml"  
+Or to use your custom scoring file "super_strict_scores.yaml" on the CSSR Chapter Temperature Changes in the United States Figure 6.1: "cssr_ch6_fig1_superstrict_metrics.yaml" (and commit that scoring file!)
+
+
+If you want to use the default scores and configuration, the process is pretty straightforward:
+
+```
+screen -DRS "metrics screen"         # creates or reconnects to the screen named "metrics screen"
+cd ~/repos/gcis-provenance-evaluator
+./generate_resource_scores.pl \
+  --resouce /report/nca3/chapter/executive-summary \
+  --tree_file ./nca3_ch1_defaultscoring_metrics.yaml```
