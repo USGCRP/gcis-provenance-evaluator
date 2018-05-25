@@ -9,56 +9,95 @@ Primary Publications: [nca3](https://data.globalchange.gov/report/nca3), [Impact
 ## Secondary Objective
 Informing decisions on where to direct data mangement work by identifying weak or broken provenance that can be improved
 
-## Requires
+## Setup
 
 ### Perl
 
 Perl v5.14 or higher  
 
+```
+apt-get -y update && apt-get -y install perlbrew
+perlbrew init
+echo "source ~/perl5/perlbrew/etc/bashrc" >>~/.bashrc
+source ~/.bashrc
+perlbrew install perl-5.20.0 # Takes about 25 minutes!
+perlbrew install-cpanm
+perlbrew install-patchperl
+perlbrew switch perl-5.20.0
+```
+
 ### CPAN Modules
 
 These modules are required, install via `cpanm`:  
+
 ```
-Getopt::Long
-Pod::Usage
-YAML::XS
-Data::Dumper
-Clone::PP
-Time::HiRes
-Path::Class
-JSON::XS
-Mojo::UserAgent
+cpanm install Getopt::Long Pod::Usage YAML::XS Data::Dumper Clone::PP Time::HiRes Path::Class JSON::XS Mojo::UserAgent
 ```
 
-### GCIS Repos
+If you run into any error that mentions a missing module, install it similarly with: `cpanm install Module::Name`.
+
+### GCIS Repos Setup
+
+Required repos:
 
 **GCIS Scripts**     : `https://github.com/USGCRP/gcis-scripts/`  
 **GCIS Perl Client** : `https://github.com/USGCRP/gcis-pl-client/`
+**GCIS Provenance Evaluator** : `https://github.com/USGCRP/gcis-pl-client/`
 
 Clone these and add their `lib` directories to your local `PERL5LIB`
 
+Initial Setup:
+```
+mkdir ~/repos                    # only if you have no existing 'repos' directory
+cd ~/repos
+ls                               # check 'gcis-scripts' and 'gcis-pl-client' exist
+git clone https://github.com/USGCRP/gcis-scripts/
+git clone https://github.com/USGCRP/gcis-pl-client/
+git clone https://github.com/USGCRP/gcis-provenance-evaluator/
+ls                               # should see all three now
+echo "export PERL5LIB=$PERL5LIB:~/repos/gcis-pl-client/lib:~/repos/gcis-scripts/lib/" >>~/.bashrc
+. ~/.bashrc
+```
+
+Refresh the repos if it's been several months!
+```
+cd ~/repos/gcis-scripts
+git pull
+cd ~/repos/gcis-pl-client
+git pull
+cd ~/repos/gcis-provenance-evaluator
+git pull
+```
+
+See the scripts documentation & examples:
+```
+cd ~/repos/gcis-provenance-evaluator
+perldoc ./generate_resource_scores.pl
+```
+
 ## Score Format
 
-TODO
+To Document
 
 ## Component Format
 
-TODO
+To Document
 
 ## Usage
 
   1. Establish Scores & Configuration
      1. Establish a scoring metric for each GCIS resource
-        1. See [example](https://github.com/USGCRP/gcis-provenance-evaluator/blob/master/scores/internal_score.yaml), [format](#score-format)
+        1. See [default example](https://github.com/USGCRP/gcis-provenance-evaluator/blob/master/scores/internal_score.yaml), [format](#score-format)
      1. Establish a scoring metric for each GCIS connection
-        1. See [example](https://github.com/USGCRP/gcis-provenance-evaluator/blob/master/scores/connection_score.yaml), [format](#score-format)
+        1. See [default example](https://github.com/USGCRP/gcis-provenance-evaluator/blob/master/scores/connection_score.yaml), [format](#score-format)
      1. Establish the components for each GCIS resource
-        1. See [example](https://github.com/USGCRP/gcis-provenance-evaluator/blob/master/config/components.yaml), [format](#component-format)
+        1. See [defaut example](https://github.com/USGCRP/gcis-provenance-evaluator/blob/master/config/components.yaml), [format](#component-format)
   1. Generate the score tree
      1. Decide how many levels deep you want to analyse your resource.
-     1. Select your GCIS instance to run against (or load the pertinent database dump into a local instance).
+     1. Select your GCIS instance to run against (or load the pertinent database dump into a local instance) (default production).
      1. Run the command to generate the tree:  
-       `./generate_resource_scores.pl --resouce /report/nca3 --tree_file ./nca3_tree.yaml --depth 1 --url https://data.globalchange.gov`
+       `./generate_resource_scores.pl --resouce /report/nca3/chapter/executive-summary --tree_file ./nca3_ch1_defaultscores_metrics.yaml`
+     1. Name the trees in an informative way and store them somewhere safe!
   1. Run analysis on the Score Tree
      1. TODO
 
