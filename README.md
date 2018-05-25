@@ -41,7 +41,7 @@ If you run into any error that mentions a missing module, install it similarly w
 Required repos:
 
 **GCIS Scripts**     : `https://github.com/USGCRP/gcis-scripts/`  
-**GCIS Perl Client** : `https://github.com/USGCRP/gcis-pl-client/`
+**GCIS Perl Client** : `https://github.com/USGCRP/gcis-pl-client/`  
 **GCIS Provenance Evaluator** : `https://github.com/USGCRP/gcis-pl-client/`
 
 Clone these and add their `lib` directories to your local `PERL5LIB`
@@ -106,8 +106,11 @@ To Document
 **Note 1:** This script is _long running_ on larger chapters! To be safe, you should run it in a screen session on a long-living server to prevent interruptions. For our purposes at USGCRP, I suggest running this script on data-review. 
 
 **Note 2:** This process is likely to generate a multitude of output trees we will want to keep track of. I strongly encourage a strict naming convention: "REPORT_CHAPTER_COMPONENT_SCORING_metrics.yaml".  
-So, if you were to run this on the Executive Summary of the NCA3 with the default scores: "nca3_ch1_defaultscoring_metrics.yaml"  
-Or to use your custom scoring file "super_strict_scores.yaml" on the CSSR Chapter Temperature Changes in the United States Figure 6.1: "cssr_ch6_fig1_superstrict_metrics.yaml" (and commit that scoring file!)
+  - So, if you were to run this on the Executive Summary of the NCA3 with the default scores: 
+    - "nca3_ch1_defaultscoring_metrics.yaml"  
+  - Or to use your custom scoring file "super_strict_scores.yaml" on the CSSR Chapter Temperature Changes in the United States Figure 6.1:
+    - "cssr_ch6_fig1_superstrict_metrics.yaml" 
+    - commit that scoring file!
 
 
 If you want to use the default scores and configuration, the process is pretty straightforward:
@@ -117,4 +120,23 @@ screen -DRS "metrics screen"         # creates or reconnects to the screen named
 cd ~/repos/gcis-provenance-evaluator
 ./generate_resource_scores.pl \
   --resouce /report/nca3/chapter/executive-summary \
-  --tree_file ./nca3_ch1_defaultscoring_metrics.yaml```
+  --tree_file ./nca3_ch1_defaultscoring_metrics.yaml
+exit
+```
+  
+Running with all the custom options:
+
+```
+screen -DRS "metrics screen"     
+cd ~/repos/gcis-provenance-evaluator
+./generate_resource_scores.pl \ 
+  --resouce report/usgcrp-climate-human-health-assessment-2016/chapter/extreme-events \ 
+  --tree_file ./hhs2016_ch4_newscoring_newcomponents_metrics.yaml \ 
+  --url https://data-stage.globalchange.gov \ 
+  --depth 2 \                                 # WARNING - increasing depth can potentially make the run _exponentially_ longer!!!
+  --connection_score /tmp/new_scores.yml \ 
+  --internal_score /tmp/new_inner_scores.yml \ 
+  --components /tmp/comps.yml
+```
+
+
