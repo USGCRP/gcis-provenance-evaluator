@@ -20,10 +20,10 @@ apt-get -y update && apt-get -y install perlbrew
 perlbrew init
 echo "source ~/perl5/perlbrew/etc/bashrc" >>~/.bashrc
 source ~/.bashrc
-perlbrew install perl-5.20.0 # Takes about 25 minutes!
+perlbrew install perl-5.20.3 # Takes about 25 minutes!
 perlbrew install-cpanm
 perlbrew install-patchperl
-perlbrew switch perl-5.20.0
+perlbrew switch perl-5.20.3
 ```
 
 ### CPAN Modules
