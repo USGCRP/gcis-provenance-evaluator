@@ -119,7 +119,7 @@ If you want to use the default scores and configuration, the process is pretty s
 screen -DRS "metrics screen"         # creates or reconnects to the screen named "metrics screen"
 cd ~/repos/gcis-provenance-evaluator
 ./generate_resource_scores.pl \
-  --resouce /report/nca3/chapter/executive-summary \
+  --resource /report/nca3/chapter/executive-summary \
   --tree_file ./nca3_ch1_defaultscoring_metrics.yaml
 exit
 ```
@@ -130,7 +130,7 @@ Running with all the custom options:
 screen -DRS "metrics screen"     
 cd ~/repos/gcis-provenance-evaluator
 ./generate_resource_scores.pl \ 
-  --resouce report/usgcrp-climate-human-health-assessment-2016/chapter/extreme-events \ 
+  --resource report/usgcrp-climate-human-health-assessment-2016/chapter/extreme-events \ 
   --tree_file ./hhs2016_ch4_newscoring_newcomponents_metrics.yaml \ 
   --url https://data-stage.globalchange.gov \ 
   --depth 2 \                                 # WARNING - increasing depth can potentially make the run _exponentially_ longer!!!
