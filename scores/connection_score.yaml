@@ -3,41 +3,40 @@
 # If acceptable, good? very good?
 # If multiple exist, any is enough.
 --- 
-contributor: 
-  acceptable: 
+contributor:
+  acceptable:
     - 
-      fields: 
+      fields:
         - person_uri
-        - reference_identifier # Not currently available from API
+        - role_type_identifier
       required: 2
     - 
-      fields: 
+      fields:
         - organization_uri
-        - reference_identifier # Not currently available from API
+        - role_type_identifier
       required: 2
-  good: 
+  good:
     - 
-      fields: 
+      fields:
         - person_uri
         - organization_uri
-        - reference_identifier # Not currently available from API
+        - role_type_identifier
       required: 3
-  poor: 
+  poor:
     - 
-      fields: 
+      fields:
         - person_uri
         - organization_uri
       required: 1
-  very_good: 
+  very_good:
     - 
       fields: []
       required: -1
-  very_poor: 
+  very_poor:
     - 
-      fields: 
+      fields:
         - id
-        - role_type_identifer
-      required: 2
+      required: 1
 reference: 
   acceptable: 
     - 
