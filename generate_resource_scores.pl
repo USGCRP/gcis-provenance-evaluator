@@ -553,20 +553,24 @@ sub calculate_internal_score {
     }
     if ( $very_good == 1 ) {
         return 5;
+        say "\t\tScore: 5" if $verbose;
     }
     elsif ( $good == 1 ) {
+        say "\t\tScore: 4" if $verbose;
         return 4;
     }
     elsif ( $acceptable == 1 ) {
+        say "\t\tScore: 3" if $verbose;
         return 3;
     }
 
     $poor = score_is('poor', $type, $resource);
     say "\tPoor? $poor" if $verbose;
     if ( $poor == 1 ) {
+        say "\t\tScore: 2" if $verbose;
         return 2;
     }
-    say "\tVery Poor." if $verbose;
+    say "\t\tScore: 1" if $verbose;
     return 1;
 }
 
