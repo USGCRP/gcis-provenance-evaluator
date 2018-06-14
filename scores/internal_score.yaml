@@ -556,10 +556,8 @@ organization:
 person: 
   acceptable: 
     - 
-      fields: 
-        - url
-        - orcid
-      required: 1
+      fields: []
+      required: -1
   good: 
     - 
       fields: 
