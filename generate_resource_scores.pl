@@ -579,9 +579,8 @@ sub score_is {
 
     # there can be multiple ways to get to the score
     for my $qualifying_grades ( @{ $RUBRIC->{$type}->{$quality} } ) {
+        return -1 if $qualifying_grades->{required} == -1;
         my @keys_to_look_for = @{ $qualifying_grades->{fields} };
-        my $required_num_keys = $qualifying_grades->{required};
-        return 1 if $required_num_keys == -1;
         my $count = 0;
         for my $key ( @keys_to_look_for ) {
             if ( $key =~ /:/ ) {
@@ -590,7 +589,7 @@ sub score_is {
             elsif ( exists $resource->{$key} && $resource->{$key} &&  $resource->{$key} ne '') {
                 $count++;
             }
-            return 1 if $count == $required_num_keys;
+            return 1 if $count == $qualifying_grades->{required};
         }
     }
 
@@ -626,8 +625,8 @@ sub score_subkey {
             return 1;
         }
     }
-    # files and figures have an array, and one of those has a key
-    elsif ( $keys[0] eq 'files' || $keys[0] eq 'figures' ) {
+    # files and figures have an array, and one of those has a key.
+    elsif ( $keys[0] eq 'files' || $keys[0] eq 'figures' || $keys[0] eq 'contributors' ) {
         if (
           exists $resource->{$keys[0]}->[$keys[1]]->{$keys[2]}
           && $resource->{$keys[0]}->[$keys[1]]->{$keys[2]}
@@ -635,6 +634,7 @@ sub score_subkey {
             return 1;
         }
     }
+
     return 0;
 }
 
