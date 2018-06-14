@@ -189,13 +189,21 @@ sub score_publication {
 
     my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
 
-    say "Resource: $resource_uri" if $verbose;
+    say "Resource: $resource_uri Type: $type" if $verbose;
     my $score = calculate_internal_score( $type, $resource);
 
-    my $connections->{contributors} = score_contributors(
+    # Only publication types get contributors. Person & Org return false readings.
+    my $connections->{contributors} = {};
+    if ( grep { $type eq $_ } qw/person organization/ ) {
+        say "No contribs on Persons and Orgs." if $verbose;
+    }
+    else {
+        $connections->{contributors} = score_contributors(
                             contributors => $resource->{contributors},
                             depth        => $depth,
                          );
+    }
+
     # Only some publication types get references
     $connections->{references} = {};
     if ( grep { $type eq $_ } qw/report chapter figure finding table webpage book dataset journal/ ) {
