@@ -389,8 +389,9 @@ image:
 instrument: 
   acceptable: 
     - 
-      fields: []
-      required: -1
+      fields:
+        - description_attribution
+      required: 1
   good: 
     - 
       fields: 
@@ -486,8 +487,10 @@ model_run:
       required: 1
   good: 
     - 
-      fields: []
-      required: -1
+      fields:
+        - sequence_description
+        - time_resolution
+      required: 1
   poor: 
     - 
       fields: []
