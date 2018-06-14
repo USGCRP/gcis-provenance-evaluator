@@ -240,7 +240,7 @@ sub score_contributors {
             contributor => $contrib,
             depth       => $depth,
         );
-        $contributors_scored->{$contrib->{uri}} = $contrib_score;
+        $contributors_scored->{"/contributor/$contrib->{id}"} = $contrib_score;
     }
     return $contributors_scored;
 }
@@ -260,6 +260,7 @@ sub score_contributor {
     my $depth       = $args{depth};
     my $contributor = $args{contributor};
 
+    say "Resource: /contributor/$contributor->{id}" if $verbose;
     my $score = calculate_internal_score( 'contributor', $contributor);
 
     my $person = $contributor->{person_uri}
@@ -353,7 +354,7 @@ sub score_references {
             reference => $ref,
             depth     => $depth,
         );
-        $references_scored->{$ref->{uri}} = $ref_score;
+        $references_scored->{"/reference/$ref->{identifier}/"} = $ref_score;
     }
     return $references_scored;
 }
