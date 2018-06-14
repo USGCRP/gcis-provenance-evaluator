@@ -7,26 +7,26 @@ contributor:
   acceptable:
     - 
       fields:
-        - person_id
+        - person_uri
         - role_type_identifier
       required: 2
     - 
       fields:
-        - organization_identifier
+        - organization_uri
         - role_type_identifier
       required: 2
   good:
     - 
       fields:
-        - person_id
-        - organization_identifier
+        - person_uri
+        - organization_uri
         - role_type_identifier
       required: 3
   poor:
     - 
       fields:
-        - person_id
-        - organization_identifier
+        - person_uri
+        - organization_uri
       required: 1
   very_good:
     - 
