@@ -189,6 +189,7 @@ sub score_publication {
 
     my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
 
+    say "Resource: $resource_uri" if $verbose;
     my $score = calculate_internal_score( $type, $resource);
 
     my $connections->{contributors} = score_contributors(
@@ -314,6 +315,7 @@ sub score_entity {
 
     my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
     print "\t";
+    say "Resource: $resource_uri" if $verbose;
     my $score = calculate_internal_score( $type, $resource);
 
     my $components = score_components(
@@ -374,6 +376,7 @@ sub score_reference {
     my $reference = $args{reference};
     my $depth     = $args{depth};
 
+    say "Resource: /reference/$reference->{identifier}" if $verbose;
     my $score = calculate_internal_score( 'reference', $reference );
 
     # does child pub exist?
@@ -530,10 +533,14 @@ sub calculate_internal_score {
     print "." if $progress;
     my ( $very_poor, $poor, $acceptable, $good, $very_good ) = 0;
     $acceptable = score_is('acceptable', $type, $resource);
+    #say Dumper $resource if $verbose;
+    say "\tAcceptable? $acceptable" if $verbose;
     if ( $acceptable ) {
         $good = score_is('good', $type, $resource);
+        say "\tGood? $good" if $verbose;
         if ( $good ) {
             $very_good = score_is('very_good', $type, $resource);
+            say "\tVery Good? $very_good" if $verbose;
         }
     }
     if ( $very_good == 1 ) {
@@ -546,9 +553,12 @@ sub calculate_internal_score {
         return 3;
     }
 
-    if ( score_is('poor', $type, $resource) ) {
+    $poor = score_is('poor', $type, $resource);
+    say "\tPoor? $poor" if $verbose;
+    if ( $poor == 1 ) {
         return 2;
     }
+    say "\tVery Poor." if $verbose;
     return 1;
 }
 
