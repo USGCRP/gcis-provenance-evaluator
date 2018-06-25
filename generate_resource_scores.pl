@@ -64,14 +64,14 @@ Progress monitor printed to screen, to show the script is making progress.
 Score the nca3 report
 
 ./generate_resource_scores.pl \
-  --resouce /report/nca3 \
+  --resource /report/nca3 \
   --tree_file ./nca3_tree.yaml
 
 Score the chapter extreme-events from the Report Climate Human Health Assessment 2016,
 looking at dev, go deeper and normal and use custom scores.
 
 ./generate_resource_scores.pl \
-  --resouce report/usgcrp-climate-human-health-assessment-2016/chapter/extreme-events \
+  --resource report/usgcrp-climate-human-health-assessment-2016/chapter/extreme-events \
   --tree_file ./hhs2016_ch_extreme_tree.yaml \
   --url https://data-dev.globalchange.gov \
   --depth_references 1 \
