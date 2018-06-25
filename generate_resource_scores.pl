@@ -43,9 +43,10 @@ File containing the Internal item scores. Default scores/internal_score.yaml
 
 File containing the component relationships. Default config/components.yaml
 
-=item B<--depth>
+=item B<--depth_references>
 
-How many references deep to process. Default 1.
+When encountering a reference, we will look at the child publication and all of
+its componenets and contributors this many times. Default 0.
 
 =item B<--verbose>
 
@@ -73,7 +74,7 @@ looking at dev, go deeper and normal and use custom scores.
   --resouce report/usgcrp-climate-human-health-assessment-2016/chapter/extreme-events \
   --tree_file ./hhs2016_ch_extreme_tree.yaml \
   --url https://data-dev.globalchange.gov \
-  --depth 3 \
+  --depth_references 1 \
   --connection_score /tmp/new_scores.yml \
   --internal_score /tmp/new_inner_scores.yml \
   --components /tmp/comps.yml
@@ -96,7 +97,7 @@ use v5.14;
 
 # local $YAML::Indent = 2;
 
-my $MAX_DEPTH = 1;
+my $MAX_DEPTH = 0;
 my $RUBRIC;
 my $COMPONENTS;
 my $URL = "https://data.globalchange.gov";
@@ -110,7 +111,7 @@ GetOptions(
   'connection_score=s'  => \$connection_score,
   'internal_score=s'    => \$internal_score,
   'components=s'        => \$components_map,
-  'depth=i'             => \$MAX_DEPTH,
+  'depth_references=i'  => \$MAX_DEPTH,
   'verbose!'            => \(my $verbose),
   'progress!'           => \(my $progress),
   'help|?'              => sub { pod2usage(verbose => 2) },
@@ -145,7 +146,7 @@ Evaluating Provenance
     internal scores file   : $internal_score
     connection scores file : $connection_score
     components file        : $components_map
-    depth                  : $MAX_DEPTH
+    depth_references       : $MAX_DEPTH
 
 END
     say $greeting if $verbose;
