@@ -411,36 +411,92 @@ instrument:
         - identifier
         - name
       required: 2
-journal: 
-  acceptable: 
+journal:
+  acceptable:
     - 
-      fields: 
-        - url
+      fields:
+        - title
         - print_issn
-        - online_issn
-      required: 1
-  good: 
+      required: 2
     - 
-      fields: 
+      fields:
+        - title
+        - online_issn
+      required: 2
+    - 
+      fields:
+        - title
+        - url
+      required: 2
+  good:
+    - 
+      fields:
+        - title
+        - url
+        - online_issn
+      required: 3
+    - 
+      fields:
         - title
         - url
         - print_issn
+      required: 3
+    - 
+      fields:
+        - title
+        - "contributors:0:organization_uri"
+        - print_issn
+      required: 3
+    - 
+      fields:
+        - title
+        - "contributors:0:organization_uri"
         - online_issn
+      required: 3
+    - 
+      fields:
+        - title
+        - "contributors:0:organization_uri"
+        - url
       required: 3
   poor: 
     - 
-      fields: 
+      fields:
         - title
-      required: 1
-  very_good: 
+        - country
+      required: 2
     - 
-      fields: 
+      fields:
+        - title
+        - "contributors:0:organization_uri"
+      required: 2
+    - 
+      fields:
+        - print_issn
+      required: 1
+    - 
+      fields:
+        - online_issn
+      required: 1
+    - 
+      fields:
+        - url
+      required: 1
+  very_good:
+    - 
+      fields:
         - notes
         - country
       required: 1
-  very_poor: 
     - 
-      fields: 
+      fields:
+        - print_issn
+        - online_issn
+        - url
+      required: 3
+  very_poor:
+    - 
+      fields:
         - identifier
       required: 1
 model: 
