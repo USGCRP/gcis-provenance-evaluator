@@ -46,7 +46,7 @@ File containing the component relationships. Default config/components.yaml
 =item B<--depth_references>
 
 When encountering a reference, we will look at the child publication and all of
-its componenets and contributors this many times. Default 0.
+its components and contributors this many times. Default 0.
 
 =item B<--verbose>
 
