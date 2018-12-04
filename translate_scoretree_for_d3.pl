@@ -125,6 +125,7 @@ sub process_subtree {
         $node->{type} = $type;
         $node->{score} = $tree->{$key}->{score};
         $node->{children} = get_children($tree->{$key});
+        next unless $node->{score};
         push @$result_tree, $node;
     }
 
