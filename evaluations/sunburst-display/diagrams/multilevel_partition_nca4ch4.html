@@ -50,8 +50,7 @@ var arc = d3.svg.arc()
     .innerRadius(function(d) { return radius / (level + 1)  * d.depth; })
     .outerRadius(function(d) { return radius / (level + 1)  * (d.depth + 1) - 1; });
 
-d3.json("json/nca4_ch5_butterfly_metrics_d3.json", function(error, root) {
-//d3.json("json/example_gcis_d3_scoretree.json", function(error, root) {
+d3.json("json/nca4_ch4_butterfly_dp1_metrics.json", function(error, root) {
   if (error) throw error;
 
   // Compute the initial layout on the entire tree to sum sizes.
@@ -223,7 +222,7 @@ d3.select(self.frameElement).style("height", margin.top + margin.bottom + "px");
 </script>
 <p>Multilevel Partition Sunburst by Kathryn Tipton. <br/>
 Based on <a href="https://bl.ocks.org/mbostock/5944371">Bilevel Partiton by Mike Bostock</a>. Released under the <a href="https://opensource.org/licenses/GPL-3.0"> GNU General Public License, version 3</a><br/><br/>
-Data from <a href="https://data.globalchange.gov">US Global Change Research Program - Global Change Information System</a>, <a href="https://data.globalchange.gov/report/nca3/chapter/our-changing-climate">Climate Change Impacts in the United States: The Third National Climate Assessment - Chapter 2 : Our Changing Climate</a></p>
+Data from <a href="https://data.globalchange.gov">US Global Change Research Program - Global Change Information System</a>, <a href="https://data.globalchange.gov/report/nca4/chapter/4">Impacts, Risks, and Adaptation in the United States: The Fourth National Climate Assessment, Volume II - Chapter 4 : Energy Supply, Delivery, and Demand</a></p>
 <p><a href="./">See other sunburst diagrams</a></p>
 </body>
 </html>
