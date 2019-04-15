@@ -188,7 +188,8 @@ sub score_publication {
     my $type         = $args{type};
     my $depth        = $args{depth};
 
-    my $resource = $g->get("$resource_uri") or die " Failed to retrieve resource: $resource_uri";
+    my $resource = $g->get("$resource_uri") or warn " Failed to retrieve resource: $resource_uri";
+    return unless $resource;
 
     say "Resource: $resource_uri Type: $type" if $verbose;
     my $score = calculate_internal_score( $type, $resource);

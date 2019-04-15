@@ -98,7 +98,7 @@ To Document
      1. Run the command to generate the tree: See next section.  
        - Name the trees in an informative way and store them somewhere safe!
   1. Run analysis on the Score Tree
-     1. TODO
+     1. See each evaluation folder.
 
 ## Generating Scores
 
