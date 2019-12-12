@@ -1,0 +1,1472 @@
+---
+/report/nca4/chapter/overview-executive-summary:
+  components:
+    figures:
+      /report/nca4/chapter/overview-executive-summary/figure/adaptation-measures-in-kivalina--ak:
+        components:
+          images:
+            /image/1836afe8-8989-4fbc-a2be-07affb597581:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/9b05229e-b1e9-41c0-8552-7530f970ed75:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/fort-calhoun-flooding:
+        components:
+          images:
+            /image/6867b7e6-9105-4fe7-9a85-3034fde8e9c5:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33170:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/historical_and_projected_global_mean_sea_level_rise:
+        components:
+          images:
+            /image/a0ea287a-535b-4f0a-9e98-1209fd6afe36:
+              components:
+                activities:
+                  /activity/nca4-u-s--sea-level-rise-panel-2-r1i44-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/b69d25b4-7be4-459f-886c-c0fab4ed1d9a:
+              components:
+                activities:
+                  /activity/nca4-u-s--sea-level-rise-panel-1-ajvz7-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/27993:
+              organization:
+                /organization/noaa-center-operational-oceanographic-products-services:
+                  components: {}
+                  score: 5
+              person:
+                /person/11521:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/hurricane-harvey-flooding-ch1:
+        components:
+          images:
+            /image/abf681e0-d9b0-4343-9f4a-178f263906e5:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/impacts-and-actions-due-to-heat-in-phoenix--arizona:
+        components:
+          images:
+            /image/39d72ce9-ec0b-4f11-945a-a341d0abed12:
+              components:
+                activities:
+                  /activity/nca4-impacts-and-actions-due-to-heat-in-phoenix--arizona-panel-2-h7ryt-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+            /image/63730e87-7e5b-4a0d-a9ae-d8a512535def:
+              components:
+                activities:
+                  /activity/nca4-impacts-and-actions-due-to-heat-in-phoenix--arizona-panel-2-m3qtl-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/32952:
+              organization:
+                /organization/university-illinois-urbana-champaign-department-atmospheric-sciences:
+                  components: {}
+                  score: 5
+              person:
+                /person/1025:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33124:
+              organization:
+                /organization/north-carolina-state-university:
+                  components: {}
+                  score: 5
+              person:
+                /person/1025:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33128:
+              organization:
+                /organization/north-carolina-state-university:
+                  components: {}
+                  score: 5
+              person:
+                /person/1101:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/34876:
+              organization:
+                /organization/north-carolina-state-university:
+                  components: {}
+                  score: 5
+              person:
+                /person/16699:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/34890:
+              organization:
+                /organization/north-carolina-state-university:
+                  components: {}
+                  score: 5
+              person:
+                /person/16708:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/34891:
+              organization:
+                /organization/lmi:
+                  components: {}
+                  score: 5
+              person:
+                /person/16726:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/indicators-nca3-image:
+        components:
+          images:
+            /image/1c130a6c-e7ea-4e75-837f-d992135a2184:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-1-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+            /image/22e68ddd-8df0-4a1a-8cf0-9ae56f7caf18:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-3-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/3e58bcba-9bd0-4693-8721-c6080517ed7a:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-6-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/4081b164-6a98-48a8-9fea-73296b8e1f54:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/4a264057-671b-43b4-9869-dae71d90f9bd:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-10-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+            /image/598fc444-e18f-4f0c-8d08-3d68f4885181:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-12-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/680e175c-5683-4911-b232-c187fa274cf4:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-8-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/92840b52-4c7b-49d9-8d93-ae7fc67c7c3a:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-2-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/9eabcfff-3285-4da6-bd3c-f14fb201f5ea:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-7-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/9eeb6894-6c9d-4e9c-8993-c40106f758ab:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-11-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/a7304d90-a2fa-494b-b6f1-68e219de37a5:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-9-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/a9a21ade-8322-47fd-aa12-3af66dd29110:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-4-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/b3101e2e-f6f9-4c8b-90c6-27715d60d57d:
+              components:
+                activities:
+                  /activity/nca4-indicators-panel-5-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/25228:
+              organization:
+                /organization/us-environmental-protection-agency:
+                  components: {}
+                  score: 5
+              person:
+                /person/2200:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/28905:
+              organization:
+                /organization/noaa-national-ocean-service:
+                  components: {}
+                  score: 5
+              person:
+                /person/11521:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33511:
+              organization:
+                /organization/us-environmental-protection-agency:
+                  components: {}
+                  score: 5
+              person:
+                /person/2200:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/isle-de-jean-charles-community-relocation:
+        components:
+          images:
+            /image/70d83c38-fa45-43bf-b01e-4cc1ade5b2e6:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/9174f662-af68-4777-bcd5-1b2f071266e5:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/norfolk-naval-base:
+        components:
+          images:
+            /image/870114a8-dd66-4c0d-9cfa-d302fa74c29d:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/overview_adaptation-stages---progress-since-nca3_v1:
+        components:
+          images:
+            /image/8777854d-a712-4e6a-b557-47f07f91c043:
+              components:
+                activities:
+                  /activity/nca4-overview_adaptation-stages---progress-since-nca3_v1-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/21393:
+              organization:
+                /organization/rand-corporation:
+                  components: {}
+                  score: 5
+              person:
+                /person/2840:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/34893:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16700:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/overview_regional-impacts-and-actions_v1:
+        components:
+          images:
+            /image/955a2dec-ea3b-432e-9d8b-81788647bd78:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33170:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33509:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16009:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33510:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16002:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/overview_sectoral-cost-savings-from-mitigation_v1:
+        components:
+          images:
+            /image/68f813d1-d96c-498c-ac1d-d4dec2f2f6f2:
+              components:
+                activities:
+                  /activity/nca4-overview_sectoral-cost-savings-from-mitigation_v1-panel-2-jhyyp-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/bb1498b9-8be8-4412-afb2-5c6ccb645542:
+              components:
+                activities:
+                  /activity/nca4-overview_sectoral-cost-savings-from-mitigation_v1-panel-3-ts3rg-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/d3f1da1c-9939-4039-bb70-47c4acf72ba3:
+              components:
+                activities:
+                  /activity/nca4-overview_sectoral-cost-savings-from-mitigation_v1-panel-1-ym2az-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/20425:
+              organization:
+                /organization/us-environmental-protection-agency:
+                  components: {}
+                  score: 5
+              person:
+                /person/2636:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/overview_severe-coral-bleaching_v4:
+        components:
+          images:
+            /image/02627dc3-ce72-4a0f-a032-4a1a64f2ee80:
+              components:
+                activities:
+                  /activity/nca4-overview_severe-coral-bleaching_v4-panel-2-xji9x-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+            /image/524abf1a-d2ce-4d1e-909a-3197e50b04ba:
+              components:
+                activities:
+                  /activity/nca4-overview_severe-coral-bleaching_v4-panel-3-h9cpv-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+            /image/634e544b-c191-4a5d-83f2-bfd8bf888329:
+              components:
+                activities:
+                  /activity/nca4-overview_severe-coral-bleaching_v4-panel-1-rveyt-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+            /image/761b266d-9088-4de6-b7f7-7a70a1a03ee1:
+              components:
+                activities:
+                  /activity/nca4-overview_severe-coral-bleaching_v4-panel-5-9ytd6-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+            /image/eaa138eb-80fa-4a1a-87d1-0ee2f8d0e934:
+              components:
+                activities:
+                  /activity/nca4-overview_severe-coral-bleaching_v4-panel-4-bhyro-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+        connections:
+          contributors:
+            /contributor/33141:
+              organization:
+                /organization/east-west-center:
+                  components: {}
+                  score: 5
+              person:
+                /person/16154:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/34873:
+              organization:
+                /organization/national-oceanic-atmospheric-administration-pacific-islands-fisheries-science-center:
+                  components: {}
+                  score: 5
+              person:
+                /person/16153:
+                  components: {}
+                  score: 2
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/prairie-strips:
+        components:
+          images:
+            /image/7a3d0637-6dc5-467f-9141-f2e8b13cfcf4:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/be58b827-f745-4039-971e-9c9603227e5a:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/34870:
+              organization:
+                /organization/publication-services-llc:
+                  components: {}
+                  score: 3
+              person:
+                /person/16714:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/34871:
+              organization:
+                /organization/iowa-state-university:
+                  components: {}
+                  score: 5
+              person:
+                /person/16706:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/3933:
+              organization:
+                /organization/iowa-state-university:
+                  components: {}
+                  score: 5
+              person:
+                /person/954:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/projected-global-temperatures:
+        components:
+          images:
+            /image/15f9bad8-f04e-4324-86b1-933576907865:
+              components:
+                activities:
+                  /activity/nca4-projected-global-temperature-panel-1-3wt1b-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+            /image/232ae7f2-8db9-4bec-874a-33dccab1135e:
+              components:
+                activities:
+                  /activity/nca4-projected-global-temperature-panel-3-qt6rp-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+            /image/87622e9d-eca7-450a-9970-c9d79035b442:
+              components:
+                activities:
+                  /activity/nca4-projected-global-temperature-panel-4-wi97g-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+            /image/fd8cb2e3-bcec-437f-97e8-3c3b5171c1eb:
+              components:
+                activities:
+                  /activity/nca4-projected-global-temperature-panel-2-ft34q-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+        connections:
+          contributors:
+            /contributor/3042:
+              organization:
+                /organization/national-environmental-modeling-analysis-center:
+                  components: {}
+                  score: 5
+              person:
+                /person/1805:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/32952:
+              organization:
+                /organization/university-illinois-urbana-champaign-department-atmospheric-sciences:
+                  components: {}
+                  score: 5
+              person:
+                /person/1025:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33124:
+              organization:
+                /organization/north-carolina-state-university:
+                  components: {}
+                  score: 5
+              person:
+                /person/1025:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/33127:
+              organization:
+                /organization/north-carolina-state-university:
+                  components: {}
+                  score: 5
+              person:
+                /person/1801:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/promoting-reef-recovery:
+        components:
+          images:
+            /image/08cb204e-e2a1-4327-9a07-162843eccce9:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/68b912c1-d062-468b-afc0-d137317d5cad:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/ebaf548a-8192-4c9a-b358-fe401a3f27ed:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33434:
+              organization:
+                /organization/national-oceanic-atmospheric-administration-fisheries-office-protected-resources:
+                  components: {}
+                  score: 5
+              person:
+                /person/16079:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/34874:
+              organization:
+                /organization/national-oceanic-atmospheric-administration-fisheries-office-protected-resources:
+                  components: {}
+                  score: 5
+              person:
+                /person/16079:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+            /contributor/34875:
+              organization:
+                /organization/us-fish-wildlife-service:
+                  components: {}
+                  score: 5
+              person:
+                /person/16701:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/razor-clamming:
+        components:
+          images:
+            /image/6e444f0e-1852-4ee8-9add-0836f7f4ef30:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33412:
+              organization:
+                /organization/silvestrum-climate-associates:
+                  components: {}
+                  score: 5
+              person:
+                /person/16129:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/soybeans-impacted-by-drought-near-navasota--texas:
+        components:
+          images:
+            /image/33182e74-5007-4842-9dd2-cc473775e23f:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/state_and_local_mitigation_and_clean_energy_policies:
+        components:
+          images:
+            /image/3d56ce37-0c12-450a-b8d5-d5e9892f45b5:
+              components:
+                activities:
+                  /activity/nca4-state-energy-portfolios-panel-2-rgg0c-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/7fcaaa70-d164-446a-af6a-2a784693f587:
+              components:
+                activities:
+                  /activity/nca4-state-energy-portfolios-panel-1-ogxsa-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 5
+        connections:
+          contributors:
+            /contributor/25730:
+              organization:
+                /organization/us-environmental-protection-agency:
+                  components: {}
+                  score: 5
+              person:
+                /person/12963:
+                  components: {}
+                  score: 2
+              reference: {}
+              score: 4
+            /contributor/33144:
+              organization:
+                /organization/us-environmental-protection-agency:
+                  components: {}
+                  score: 5
+              person:
+                /person/12963:
+                  components: {}
+                  score: 2
+              reference: {}
+              score: 4
+            /contributor/34892:
+              organization:
+                /organization/ert-inc:
+                  components: {}
+                  score: 5
+              person:
+                /person/16301:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/texas-desalination-plants-ch1:
+        components:
+          images:
+            /image/50ccc024-ca2a-4425-86f7-9972e84f6c6d:
+              components:
+                activities:
+                  /activity/nca4-texas-desalination-plants-ch1-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/34872:
+              organization:
+                /organization/university-oklahoma:
+                  components: {}
+                  score: 5
+              person:
+                /person/16201:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/us-military-bases-vulnerable-to-more-than-one-potential-impact:
+        components:
+          images:
+            /image/30584416-d560-4a12-97da-bf51f1b9e153:
+              components:
+                activities:
+                  /activity/nca4-us-military-bases-vulnerable-to-more-than-one-potential-impact-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+      /report/nca4/chapter/overview-executive-summary/figure/wildfire-at-the-wildland-urban-interface:
+        components:
+          images:
+            /image/36e53164-6349-4f62-99d6-85cb0b1025e4:
+              components: {}
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+            /image/5119fadd-d7a1-436a-b367-61f1418db986:
+              components:
+                activities:
+                  /activity/nca4-wildland-urban-fire-panel-1-p4zhs-process:
+                    components: {}
+                    connections:
+                      contributors: {}
+                      references: {}
+                    score: 3
+              connections:
+                contributors: {}
+                references: {}
+              score: 4
+        connections:
+          contributors:
+            /contributor/33149:
+              organization:
+                /organization/us-global-change-research-program:
+                  components: {}
+                  score: 5
+              person:
+                /person/16004:
+                  components: {}
+                  score: 4
+              reference: {}
+              score: 4
+          references: {}
+        score: 4
+  connections:
+    contributors:
+      /contributor/26528:
+        organization:
+          /organization/us-environmental-protection-agency:
+            components: {}
+            score: 5
+        person:
+          /person/3866:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33152:
+        organization:
+          /organization/us-global-change-research-program:
+            components: {}
+            score: 5
+        person:
+          /person/16003:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33166:
+        organization:
+          /organization/us-global-change-research-program:
+            components: {}
+            score: 5
+        person:
+          /person/16002:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33167:
+        organization:
+          /organization/icf:
+            components: {}
+            score: 5
+        person:
+          /person/16002:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33168:
+        organization:
+          /organization/us-global-change-research-program:
+            components: {}
+            score: 5
+        person:
+          /person/16009:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33169:
+        organization:
+          /organization/us-geological-survey:
+            components: {}
+            score: 5
+        person:
+          /person/16009:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33170:
+        organization:
+          /organization/us-global-change-research-program:
+            components: {}
+            score: 5
+        person:
+          /person/16004:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33171:
+        organization:
+          /organization/icf:
+            components: {}
+            score: 5
+        person:
+          /person/16004:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33172:
+        organization:
+          /organization/national-oceanic-atmospheric-administration:
+            components: {}
+            score: 5
+        person:
+          /person/16005:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33173:
+        organization:
+          /organization/national-oceanic-atmospheric-administration:
+            components: {}
+            score: 5
+        person:
+          /person/11879:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33174:
+        organization:
+          /organization/us-global-change-research-program:
+            components: {}
+            score: 5
+        person:
+          /person/16006:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33175:
+        organization:
+          /organization/icf:
+            components: {}
+            score: 5
+        person:
+          /person/16006:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33176:
+        organization:
+          /organization/us-global-change-research-program:
+            components: {}
+            score: 5
+        person:
+          /person/16007:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33177:
+        organization:
+          /organization/icf:
+            components: {}
+            score: 5
+        person:
+          /person/16007:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33178:
+        organization:
+          /organization/us-global-change-research-program:
+            components: {}
+            score: 5
+        person:
+          /person/16008:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33179:
+        organization:
+          /organization/straughan-environmental-inc:
+            components: {}
+            score: 5
+        person:
+          /person/16008:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33180:
+        organization:
+          /organization/icf:
+            components: {}
+            score: 5
+        person:
+          /person/16003:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+      /contributor/33511:
+        organization:
+          /organization/us-environmental-protection-agency:
+            components: {}
+            score: 5
+        person:
+          /person/2200:
+            components: {}
+            score: 4
+        reference: {}
+        score: 4
+    references:
+      /reference/04aa6da1-18ac-435a-b31d-f4f65da727df/:
+        child_publication:
+          /webpage/0e668d96-b03f-403d-9e60-a816c99c6ac4: {}
+        score: 4
+      /reference/0615b4ff-d185-4e14-9d4d-5bea1ce6ca51/:
+        child_publication:
+          /report/climate-science-special-report/chapter/scientific-basis: {}
+        score: 4
+      /reference/0725eae6-7458-4ec2-8f66-880d88118148/:
+        child_publication:
+          /report/climate-science-special-report/chapter/detection-attribution: {}
+        score: 4
+      /reference/0b30f1ab-e4c4-4837-aa8b-0e19faccdb94/:
+        child_publication:
+          /report/epa-multi-model-framework-for-quantitative-sectoral-impacts-analysis-2017: {}
+        score: 4
+      /reference/102c643a-31f7-4881-b0cb-74335c20bf6f/:
+        child_publication:
+          /webpage/c3287d59-8610-464b-8316-653076d3a3a2: {}
+        score: 4
+      /reference/1a46c6a2-4b5f-408d-b3d0-21ebdd4f960b/:
+        child_publication:
+          /report/climate-science-special-report/chapter/circulation-variability: {}
+        score: 4
+      /reference/1b0ce605-0f6c-4e1f-8fea-71e87cb4304f/:
+        child_publication:
+          /report/climate-science-special-report/chapter/land-cover: {}
+        score: 4
+      /reference/1f9c41a2-775b-41e7-b93f-fd10e077ee66/:
+        child_publication:
+          /webpage/d075900e-87fd-4368-85ff-508d41df5dac: {}
+        score: 4
+      /reference/21f65069-74b3-4bf7-bc09-0f359b825aad/:
+        child_publication:
+          /report/climate-science-special-report/chapter/executive-summary: {}
+        score: 4
+      /reference/261fd2fd-96e9-4e5d-af1e-d8f578d7a876/:
+        child_publication:
+          /webpage/f7dd0032-81c4-4acf-8850-88cddb38518a: {}
+        score: 4
+      /reference/29960c69-6168-4fb0-9af0-d50bdd91acd3/:
+        child_publication:
+          /report/climate-science-special-report/chapter/temperature-change: {}
+        score: 4
+      /reference/30eb7358-a674-4a33-8b7e-1661355e81f0/:
+        child_publication:
+          /report/americas-pledge-phase-1-report-states-cities-businesses-united-states-are-stepping-up-on-climate-action: {}
+        score: 4
+      /reference/35520257-6694-45bb-a0bf-bd14ba88a77c/:
+        child_publication:
+          /article/10.1111/gwat.12306: {}
+        score: 4
+      /reference/372aedbf-1493-48d9-8703-5bec046576fe/:
+        child_publication:
+          /report/nca3-highlights: {}
+        score: 4
+      /reference/38d66cb7-6270-4fa1-8e12-215ddb0a37c5/:
+        child_publication:
+          /article/10.1016/j.jhydrol.2013.06.037: {}
+        score: 4
+      /reference/3bae2310-7572-47e2-99a4-9e4276764934/:
+        child_publication:
+          /report/climate-science-special-report/chapter/sea-level-rise: {}
+        score: 4
+      /reference/3df7d31f-d9ce-4eab-8db0-87937fd3111f/:
+        child_publication:
+          /book/characterizing-risk-climate-change-assessments-proceedings-workshop: {}
+        score: 4
+      /reference/437471ba-9fe3-4547-b193-7bf3ec00fbf3/:
+        child_publication:
+          /article/10.1016/j.gloenvcha.2013.03.006: {}
+        score: 4
+      /reference/52ce1b63-1b04-4728-9f1b-daee39af665e/:
+        child_publication:
+          /report/climate-science-special-report/chapter/extreme-storms: {}
+        score: 4
+      /reference/5d047224-4e72-46d1-87f5-042c9617472d/:
+        child_publication:
+          /report/climate-science-special-report/chapter/ocean-acidification: {}
+        score: 4
+  score: 5
