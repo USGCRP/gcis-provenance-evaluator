@@ -138,5 +138,10 @@ cd ~/repos/gcis-provenance-evaluator
   --internal_score /tmp/new_inner_scores.yml \ 
   --components /tmp/comps.yml
 ```
+Creating JSON for sunburst
+Put the generated yaml file in the root directory. Make sure the above cpan modules are installed and run:
+```
+./translate_scoretree_for_d3.pl   --tree_file  nca4_ch22_butterfly_1219.yaml   --d3_file  nca4_ch22_butterfly_1219.json
 
+```
 
